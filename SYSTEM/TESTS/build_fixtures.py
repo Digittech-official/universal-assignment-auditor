@@ -6,7 +6,7 @@ Sources live in SYSTEM/TESTS/fixture_sources/<CASE>/<INPUT-relative path>.<ext>.
   *.pdf.md    -> text PDF (pure-Python writer; headings bold, tables flattened)
   *.pptx.md   -> PPTX  (slides separated by a line '---'; first line = title; 'Notes:' line = speaker notes)
   *.xlsx.csv  -> XLSX  (one sheet named after the file stem)
-  *.zipdir/   -> ZIP of that directory
+  *.zipdir/   -> ZIP of that directory (any *.docx.md inside is built to a DOCX inside the ZIP)
 Special generated files (see SPECIAL): corrupt DOCX, legacy .doc.
 All content is synthetic. Outputs are written to SYSTEM/TESTS/fixtures/<CASE>/INPUT/... and committed.
 """
@@ -75,7 +75,8 @@ def build_docx(md: str, dest: Path):
             body.append(para(line))
     flush_table()
     doc = f'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document {W}><w:body>{"".join(body)}</w:body></w:document>'
-    dest.parent.mkdir(parents=True, exist_ok=True)
+    if isinstance(dest, Path):
+        dest.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(dest, "w") as zf:
         zwrite(zf, "[Content_Types].xml", CT_DOCX)
         zwrite(zf, "_rels/.rels", RELS_DOCX)
@@ -161,8 +162,15 @@ def build_zip(src_dir: Path, dest: Path):
     dest.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(dest, "w") as zf:
         for p in sorted(src_dir.rglob("*")):
-            if p.is_file():
-                zwrite(zf, f"{dest.stem}/{p.relative_to(src_dir).as_posix()}", p.read_bytes())
+            if not p.is_file():
+                continue
+            rel = p.relative_to(src_dir).as_posix()
+            if rel.endswith(".docx.md"):  # Word sources inside an archive are built to real DOCX files
+                buf = io.BytesIO()
+                build_docx(p.read_text(encoding="utf-8"), buf)
+                zwrite(zf, f"{dest.stem}/{rel[:-3]}", buf.getvalue())
+            else:
+                zwrite(zf, f"{dest.stem}/{rel}", p.read_bytes())
 
 
 def _pdf_escape(t: str) -> str:

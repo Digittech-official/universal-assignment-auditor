@@ -2,6 +2,9 @@
 """Deterministic text statistics so no agent has to count by hand.
 
 Usage: python3 SYSTEM/TOOLS/text_stats.py <extracted-text-file> [--json]
+       python3 SYSTEM/TOOLS/text_stats.py --all
+         (run by the orchestrator after Stage 0: computes statistics for every file in INPUT_MANIFEST.json that has a
+          text_source and writes OUTPUT/_work/TEXT_STATS.json, so no agent needs to count anything itself)
 
 Reports: total words; words before a References/Bibliography heading (a common
 word-count convention — the brief decides which count applies); headings found;
@@ -55,7 +58,34 @@ def stats(text: str) -> dict:
     }
 
 
+def run_all() -> int:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from common import AUDIT_DIR, OUTPUT_DIR, REPO_ROOT, WORK_DIR, load_json, write_json
+    manifest = load_json(AUDIT_DIR / "INPUT_MANIFEST.json")
+    out = {"tool": "text_stats.py --all",
+           "note": "Deterministic, approximate counts from extracted text. Cite these; never recount by eye.",
+           "files": {}}
+    for f in manifest.get("files", []):
+        src = f.get("text_source")
+        if not src or not f.get("analysed"):
+            continue
+        path = next((b / src for b in (REPO_ROOT, OUTPUT_DIR.parent) if (b / src).exists()), None)
+        if path is None:
+            continue
+        s = stats(path.read_text(encoding="utf-8", errors="replace"))
+        s.pop("headings", None)
+        out["files"][f["file_id"]] = {"path": f["path"], "detected_role": f.get("detected_role"), **s}
+    write_json(WORK_DIR / "TEXT_STATS.json", out)
+    for fid, s in out["files"].items():
+        print(f"{fid} {s['detected_role']}: {s['words_total']} words total, "
+              f"{s['words_before_references_or_appendices']} before references/appendices")
+    print("Wrote OUTPUT/_work/TEXT_STATS.json")
+    return 0
+
+
 def main(argv):
+    if argv and argv[0] == "--all":
+        return run_all()
     if not argv:
         print(__doc__)
         return 2

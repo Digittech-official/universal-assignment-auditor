@@ -177,6 +177,11 @@ class ValidatorTests(unittest.TestCase):
         t["EVIDENCE_AUDIT.json"]["findings"] = [f]
         self.assertRule(self.run_trail(t), "X07", "fabrication")
 
+    def test_negated_fabrication_wording_rejected_in_report(self):
+        t = TF.rubric_trail(self.tmp)
+        rep = TF.report_md(t).replace(TF.REFS, TF.REFS + " The Kestrel note is not judged fabricated.")
+        self.assertRule(self.run_trail(t, report_text=rep), "X16", "fabrication")
+
     def test_reference_statement_required(self):
         t = TF.rubric_trail(self.tmp)
         t["EVIDENCE_AUDIT.json"]["authenticity_statement"] = "References look fine."
@@ -270,6 +275,14 @@ class ValidatorTests(unittest.TestCase):
         self.assertRule(self.run_trail(t), "X16", "KNOWN REQUIREMENTS")
         rep = TF.report_md(t).replace("REQ-001 REQ-002 REQ-003", "KNOWN REQUIREMENTS REQ-001 REQ-002 REQ-003 BEST-PRACTICE EXPECTATIONS")
         self.assertTrue(self.run_trail(t, report_text=rep)["passed"])
+
+    def test_missing_word_count_caught_early(self):
+        t = TF.rubric_trail(self.tmp)
+        t["SUBMISSION_EVIDENCE_MAP.json"]["metrics"]["word_count_estimate"] = None
+        work = self.trail_dir.parent / "_work"
+        work.mkdir(parents=True, exist_ok=True)
+        (work / "TEXT_STATS.json").write_text(json.dumps({"files": {"FILE-003": {"words_total": 1490}}}))
+        self.assertRule(self.run_trail(t), "X06", "word_count_estimate")
 
     def test_report_must_list_every_requirement(self):
         t = TF.rubric_trail(self.tmp)

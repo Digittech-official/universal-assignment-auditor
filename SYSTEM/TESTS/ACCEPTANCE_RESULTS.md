@@ -1,4 +1,31 @@
-# Acceptance Results — v1.0.0 (2026-09-30)
+# Acceptance Results
+
+## v1.1.0 (2026-09-30) — speed release
+
+Same 11 cases, same evaluator, same conditions (4 cases in parallel). **All 11 PASS.** 64 unit tests pass.
+
+| Case | v1.0.0 minutes | v1.1.0 minutes | QA iterations (v1.1.0) |
+|---|---|---|---|
+| A_dissertation_rubric | 15.1 | 12.0 | 1 |
+| B_essay_brief_only | 9.8 | 7.4 | 1 |
+| C_coding_spec_rubric | 10.8 | 8.5 | 1 |
+| D_technical_report_pdf | 9.2 | 7.9 | 1 |
+| E_presentation_bands_rubric | 9.2 | 7.2 | 1 |
+| F_data_analysis | 10.4 | 12.0 | 2 |
+| G_title_only | 5.9 | 5.0 | 1 |
+| H_missing_submission | 0.4 | 0.4 | — |
+| I_contradictory_instructions | 8.2 | 6.6 | 1 |
+| J_unreadable_unsupported | 8.8 | 5.9 | 2 → 1 |
+| K_anti_hallucination_optional | 7.6 | 5.4 | 1 |
+| **Total (excl. H)** | **95.0** | **77.9 (−18%)** | |
+
+Findings from the two intermediate v1.1.0 runs (fixed before this run): (1) the evidence mapper sometimes failed to
+record word counts, which QA caught but at the cost of re-running 6–7 stages — counts are now computed once by the
+orchestrator (`text_stats.py --all`) and the validator flags a missing count immediately; (2) agents used shell
+one-liners that are not pre-approved (would be permission prompts for employees) — agents now use Read/Write/Edit;
+(3) a report said a source was "not judged fabricated" — fabrication wording is now banned outright.
+
+## v1.0.0 (2026-09-30)
 
 Synthetic fixtures only. Produced with `python3 SYSTEM/TESTS/run_e2e.py` (real `/check-assignment` pipeline,
 headless Claude Code, project allow-list permissions, safety hook active) and scored by `evaluate_run.py`.

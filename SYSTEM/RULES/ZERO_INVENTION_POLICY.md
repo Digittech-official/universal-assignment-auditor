@@ -19,7 +19,8 @@ appendices, page requirements, formatting rules or technical specifications.
 
 1. Every requirement carries a `verbatim_quote` that appears in its source file's text. (X03)
 2. No numeric mark exists anywhere unless `RUBRIC_MODEL.numerical_marking_authorised` is true. (X08, X12, X13, X16)
-3. Never describe a reference as fabricated/fake/non-existent — external verification is not performed. (X07, X10)
+3. Never describe a reference as fabricated/fake/non-existent — external verification is not performed. The words are
+   not used at all, not even negated ("not judged fabricated"). (X07, X10, X16)
 4. Best-practice findings can never be CRITICAL; optional/recommended requirements can never ground
    CRITICAL/MAJOR findings. (X07, X08)
 5. Code review is performed only when classification requires it; statistical and presentation reviews likewise. (X09)
@@ -36,7 +37,7 @@ appendices, page requirements, formatting rules or technical specifications.
 - Do not apply coding conventions (tests, modularity, docstrings) to written work.
 - Distinguish "absent" from "not found": if a search of the extracted text finds nothing but images/figures
   were not transcribed, the status is `CANNOT VERIFY`, not `MISSING`.
-- Word counts and other document statistics come only from `SYSTEM/TOOLS/text_stats.py` as recorded in
-  `SUBMISSION_EVIDENCE_MAP.metrics`. Other agents cite those figures instead of counting again, so the audit never
+- Word counts and other document statistics come only from `SYSTEM/TOOLS/text_stats.py` (`OUTPUT/_work/TEXT_STATS.json`,
+  copied into `SUBMISSION_EVIDENCE_MAP.metrics`). Other agents cite those figures instead of counting again, so the audit never
   reports conflicting counts.
 - Report uncertainty honestly with a confidence level (HIGH / MEDIUM / LOW).

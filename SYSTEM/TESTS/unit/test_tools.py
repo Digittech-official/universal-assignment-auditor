@@ -136,6 +136,47 @@ class PrepareRunFixtureTests(unittest.TestCase):
                     self.assertFalse(f["path"].startswith("/"), "absolute path leaked into inventory")
 
 
+class ZipConventionTests(unittest.TestCase):
+    """Company standard: task material may arrive as one ZIP in 01/03; a multi-file submission arrives as one ZIP in 04."""
+
+    def test_zip_packs(self):
+        sys.path.insert(0, str(REPO / "SYSTEM" / "TESTS"))
+        from build_fixtures import build_docx
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            inp, out = tmp / "INPUT", tmp / "OUTPUT"
+            for f in ("01_BRIEF_AND_TITLE", "02_RUBRIC_AND_MARKING", "03_ADDITIONAL_INSTRUCTIONS",
+                      "04_COMPLETED_ASSIGNMENT", "05_SUPPORTING_FILES"):
+                (inp / f).mkdir(parents=True)
+            brief = tmp / "brief.docx"
+            build_docx("# Brief\nTask 1: write a report. Task 2: write a reflection with an action plan. "
+                       "You must use Harvard referencing and include at least five sources in your report.\n", brief)
+            with zipfile.ZipFile(inp / "01_BRIEF_AND_TITLE" / "brief_pack.zip", "w") as zf:
+                zf.write(brief, "pack/assignment_brief.docx")
+                zf.writestr("pack/instructions.txt", "Include a title page with your candidate number.")
+            report, refl = tmp / "report.docx", tmp / "reflection.docx"
+            build_docx("# Report\nSome report text.\n", report)
+            build_docx("# Reflection\nSome reflection text.\n", refl)
+            with zipfile.ZipFile(inp / "04_COMPLETED_ASSIGNMENT" / "submission.zip", "w") as zf:
+                zf.write(report, "work/report_final.docx")
+                zf.write(refl, "work/reflection_draft.docx")
+            r = py("prepare_run.py", env={"UAA_INPUT_DIR": str(inp), "UAA_OUTPUT_DIR": str(out)})
+            self.assertEqual(r.returncode, 0, r.stderr)
+            inv = json.loads((out / "_work" / "INPUT_INVENTORY.json").read_text())
+            paths = {f["path"]: f for f in inv["files"]}
+            children = [f for f in inv["files"] if f["parent_archive"]]
+            self.assertEqual(len(children), 4, list(paths))
+            self.assertTrue(all(f["extraction_status"] == "EXTRACTED" for f in children))
+            brief_child = next(f for f in children if f["path"].endswith("assignment_brief.docx"))
+            self.assertEqual(brief_child["folder_role"], "brief")
+            self.assertIn("Task 2", (tmp / brief_child["extracted_text_path"]).read_text()
+                          if (tmp / brief_child["extracted_text_path"]).exists()
+                          else (REPO / brief_child["extracted_text_path"]).read_text())
+            # files inside ONE submission ZIP are components, never competing versions
+            self.assertEqual(inv["possible_competing_submissions"], [])
+            self.assertEqual(inv["advisory_mode"]["preliminary_mode"], "BRIEF_ONLY")
+
+
 class ScoreTests(unittest.TestCase):
     def test_sum(self):
         rub = {"aggregation_method": "SUM", "total_available": 50, "grade_boundaries": [],

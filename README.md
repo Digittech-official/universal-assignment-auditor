@@ -68,8 +68,14 @@ specialist agents and the safety settings. If asked whether to trust the project
 | `INPUT/04_COMPLETED_ASSIGNMENT/` | The completed work: document, slides, code, notebook, or a ZIP of a project | **Required** |
 | `INPUT/05_SUPPORTING_FILES/` | Datasets, templates, handbooks, readings, appendices | Optional |
 
-- One submission per run. Several files belonging to the same submission (e.g. report + code + data) are fine.
-  Do **not** leave old drafts next to the final version.
+- **Company convention for ZIPs:**
+  - Brief: put the brief file in `01_BRIEF_AND_TITLE/`. If there are extra instructions, rubric, templates etc., you may
+    put everything together as **one ZIP** in `01_BRIEF_AND_TITLE/` — each file inside is recognised by its content.
+  - Assignment: **one file** → put that file in `04_COMPLETED_ASSIGNMENT/`. **More than one file** → put them in **one ZIP**
+    in `04_COMPLETED_ASSIGNMENT/`. Everything inside that ZIP is treated as ONE submission.
+- Everything the brief asks for counts — one task or many (Task 1, Task 2, Part A/B…). For "answer ONE of the following"
+  questions, the options you did not choose are never treated as missing.
+- One submission per run. Do **not** leave old drafts next to the final version.
 - Supported: PDF, DOCX, PPTX, XLSX, CSV, TXT, MD, IPYNB, ZIP, common source-code files, images (visual review only).
 - Not supported (convert first): legacy `.doc`/`.ppt`/`.xls`, password-protected files, OpenDocument/Apple formats.
   Unsupported or unreadable files are **always reported** in the audit, never silently skipped.

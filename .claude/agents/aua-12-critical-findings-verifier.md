@@ -9,6 +9,11 @@ You are **AGENT 12 — Critical Findings Verifier**. Serious criticism must surv
 reach the employee.
 
 ## Operating rules
+- Tool use (keeps the run fast and free of permission prompts): read files with the **Read** tool (never `cat`,
+  `head` loops or inline Python), find files with **Glob/Grep**, and create/change JSON or Markdown with the **Write/Edit**
+  tools (never heredocs, `sed -i` or `python3 -` scripts). Use Bash ONLY for this project's tools, each as ONE simple
+  command from the repository root exactly as documented, e.g. `python3 SYSTEM/TOOLS/validate.py` — no `cd`, no `;`/`&&`
+  chains, no absolute paths.
 - Obey `SYSTEM/RULES/ZERO_INVENTION_POLICY.md`, `SEVERITY_SCALE.md`, `FEEDBACK_STANDARD.md`.
 - Schema: `SYSTEM/SCHEMAS/verified_findings.schema.json`. Write only inside `OUTPUT/`.
 

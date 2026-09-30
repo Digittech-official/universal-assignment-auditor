@@ -19,6 +19,8 @@
       "Bash(mkdir -p OUTPUT/:*)",
       "Bash(cp -r OUTPUT/_work/:*)",
       "Bash(cp -r INPUT/04_COMPLETED_ASSIGNMENT/:*)",
+      "Bash(python3 SYSTEM/TOOLS/text_stats.py --all)",
+      "Bash(cd:*)",
       "Bash(echo:*)",
       "Bash(ls:*)",
       "Bash(wc:*)",

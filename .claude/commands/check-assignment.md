@@ -19,7 +19,8 @@ You are the **orchestrator** of the Universal Assignment Auditor quality-control
   once with the error lines pasted into its prompt. If errors remain after the retry, continue — the QA gate will
   block release and explain why. Never fake or skip a stage.
 - If `python3` is not found, use `python` for every command.
-- Give the employee one short progress line per stage (e.g. `✔ Stage 3/15 — Requirements extracted (24)`).
+- Give the employee one short progress line per stage or wave (e.g. `✔ Wave A — task classified, 24 requirements, rubric modelled`).
+- Always launch the agents of a wave in ONE message so they genuinely run at the same time.
 - Never display the assignment's content in chat beyond short summaries. Never commit anything to git.
 
 ## Pipeline
@@ -31,26 +32,28 @@ Validate: `python3 SYSTEM/TOOLS/validate.py --upto AGENT_00`.
 Read `OUTPUT/audit_trail/INPUT_MANIFEST.json` fields `can_proceed`, `analysis_mode`, `blocking_reasons` only.
 If `can_proceed` is false: run `python3 SYSTEM/TOOLS/release_report.py`, tell the employee the blocking reasons and that
 `OUTPUT/AUDIT_BLOCKED.md` explains what to add/fix, then STOP.
+Otherwise run `python3 SYSTEM/TOOLS/text_stats.py --all` (writes `OUTPUT/_work/TEXT_STATS.json`: word and citation counts
+for every analysed file — agents read counts from this file instead of counting themselves).
 
-**Stage 1 — Task classification.** Agent `aua-01-task-classifier`.
-
-**Stages 2 + 3 — in parallel** (one message, two Agent calls): `aua-02-requirement-extraction-specialist` and
-`aua-03-rubric-interpreter`.
+**Wave A — Stages 1 + 2 + 3 in parallel** (one message, three Agent calls): `aua-01-task-classifier`,
+`aua-02-requirement-extraction-specialist`, `aua-03-rubric-interpreter`.
 Validate: `python3 SYSTEM/TOOLS/validate.py --upto AGENT_03`. If an `[X02]` error says TASK_CLASSIFICATION and
 RUBRIC_MODEL disagree, re-invoke `aua-01-task-classifier` with: `RUBRIC_MODEL.json now exists; reconcile
 numerical_marking_authorised with it (Agent 3 is authoritative on the rubric).`
 
-**Stage 4 — Quality blueprint.** Agent `aua-04-quality-blueprint-architect`. Validate `--upto AGENT_04`.
+**Wave B — Stages 4 + 5 in parallel** (one message, two Agent calls): `aua-04-quality-blueprint-architect` and
+`aua-05-submission-evidence-mapper`. Validate: `python3 SYSTEM/TOOLS/validate.py --upto AGENT_05`.
 
-**Stage 5 — Evidence mapping.** Agent `aua-05-submission-evidence-mapper`. Validate `--upto AGENT_05`.
-
-**Stages 7 + 8 + 9 — in parallel** (one message, three Agent calls): `aua-07-specialist-technical-reviewer`,
-`aua-08-reference-evidence-auditor`, `aua-09-coherence-synchronisation-auditor`. Validate: `python3 SYSTEM/TOOLS/validate.py`.
+**Wave C — Stages 7 + 8 + 9 + 10-blind in parallel** (one message, four Agent calls):
+`aua-07-specialist-technical-reviewer`, `aua-08-reference-evidence-auditor`,
+`aua-09-coherence-synchronisation-auditor`, and `aua-10-independent-second-marker` with the extra instruction
+`PHASE: BLIND`. Validate: `python3 SYSTEM/TOOLS/validate.py`.
 
 **Stage 6 — Primary assessment.** Agent `aua-06-primary-quality-assessor` (it consumes the specialist, evidence and
 coherence reviews). Validate: `python3 SYSTEM/TOOLS/validate.py`.
 
-**Stage 10 — Independent second marking.** Agent `aua-10-independent-second-marker`. Validate: `python3 SYSTEM/TOOLS/validate.py`.
+**Stage 10 — Second-marker challenge.** Agent `aua-10-independent-second-marker` with the extra instruction
+`PHASE: CHALLENGE`. Validate: `python3 SYSTEM/TOOLS/validate.py`.
 
 **Stage 11 — Score adjudication.** Read `numerical_marking_authorised` from `OUTPUT/audit_trail/RUBRIC_MODEL.json`.
 - true → Agent `aua-11-score-adjudicator`.
@@ -70,7 +73,7 @@ If FAIL (at most 2 correction rounds):
 1. Re-invoke each stage named in `failures[].stage_to_rerun`, in pipeline order, passing the matching
    `correction_required` text in the prompt (`REPORT_COMPOSER` = `aua-14-report-composer`).
 2. If a re-run stage is upstream of others (e.g. AGENT_02 changed requirements), also re-run the downstream stages that
-   consume it (5 → 7/8/9 → 6 → 10 → 11 → 12) before composing.
+   consume it (4/5 → 7/8/9 + 10-blind → 6 → 10-challenge → 11 → 12) before composing.
 3. Always re-run `aua-14-report-composer` last, then `aua-13-final-qa-controller` with `QA iteration <n>.`
 Never edit QA_STATUS.json yourself and never override a FAIL.
 

@@ -6,21 +6,15 @@ Implementation: `.claude/commands/check-assignment.md` (orchestrator prompt). Th
 INPUT/ ──► [P] prepare_run.py ──► [0] Input Integrity ──► mode?
                                                    │  CANNOT_PROCEED ──► [R] release_report.py ──► AUDIT_BLOCKED.md
                                                    ▼
-                                    [1] Task Classifier
+        Wave A:  [1] Task Classifier  |  [2] Requirement Extraction  |  [3] Rubric Interpreter      (parallel)
                                           │
-                        ┌─────────────────┴─────────────────┐
-                 [2] Requirement Extraction         [3] Rubric Interpreter      (parallel)
-                        └─────────────────┬─────────────────┘
-                                   [4] Quality Blueprint
+        Wave B:  [4] Quality Blueprint  |  [5] Evidence Mapper                                  (parallel)
                                           │
-                                   [5] Evidence Mapper
-                                          │
-              ┌───────────────────────────┼───────────────────────────┐
-     [7] Specialist Technical    [8] Reference & Evidence    [9] Coherence            (parallel)
-              └───────────────────────────┼───────────────────────────┘
+        Wave C:  [7] Specialist  |  [8] Reference & Evidence  |  [9] Coherence  |  [10] Second Marker — BLIND phase
+                                          │                                                      (parallel)
                                    [6] Primary Assessor
                                           │
-                                   [10] Second Marker (blind first)
+                                   [10] Second Marker — CHALLENGE phase (uses its saved blind judgements)
                                           │
                      authorised? ──yes──► [11] Score Adjudicator ─► compute_scores.py
                           │ no ─────────► compute_scores.py --not-applicable
@@ -33,6 +27,14 @@ INPUT/ ──► [P] prepare_run.py ──► [0] Input Integrity ──► mode
                                           │ PASS
                                    [R] release_report.py ──► FINAL_QUALITY_AUDIT.md + .html
 ```
+
+## Speed design (v1.1.0)
+- Independent stages run in parallel waves (A, B, C above).
+- The second marker's blind re-marking runs in Wave C, before the primary assessment even exists — this is faster
+  AND strengthens independence. Only the short challenge/compare phase waits for the primary assessor.
+- Models: agents doing mechanical or descriptive work use the faster model (`model: sonnet` — agents 0, 1, 4, 5, 8, 14);
+  all judgement agents (2, 3, 6, 7, 9, 10, 11, 12, 13) inherit the session's strongest model. Change a single agent's
+  `model:` line in `.claude/agents/` to trade speed for depth.
 
 ## Why this order
 - **Specialist, evidence and coherence reviews run before the primary assessment** so the primary assessor can

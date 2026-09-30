@@ -302,11 +302,18 @@ def check_blueprint(d, res):
                 res.warn("X05", f"{e['id']}: best-practice item cites a mandatory REQ — check category.")
 
 
-def check_evidence_map(d, res):
+def check_evidence_map(d, res, trail=None):
     em, reg, rub = d.get("SUBMISSION_EVIDENCE_MAP.json"), d.get("REQUIREMENT_REGISTER.json"), d.get("RUBRIC_MODEL.json")
     if not em:
         return
     locs = {l["loc_id"] for l in em["locations"]}
+    stats_p = trail.parent / "_work" / "TEXT_STATS.json" if trail else None
+    if stats_p and stats_p.exists():
+        st = json.loads(stats_p.read_text(encoding="utf-8")).get("files", {})
+        has_text = any(st.get(fid, {}).get("words_total", 0) > 0 for fid in em["submission_file_ids"])
+        if has_text and em["metrics"]["word_count_estimate"] is None:
+            res.err("X06", "SUBMISSION_EVIDENCE_MAP.metrics.word_count_estimate is null although TEXT_STATS.json has "
+                           "word counts for the submission — copy them from OUTPUT/_work/TEXT_STATS.json.")
     if reg:
         linked = [l["requirement_id"] for l in em["requirement_links"]]
         missing = {r["id"] for r in reg["requirements"]} - set(linked)
@@ -360,10 +367,10 @@ def check_findings(d, res):
         for k in ("location", "issue", "why_it_matters", "how_to_improve"):
             if len(f[k].strip()) < 12:
                 res.err("X07", f"{fid}: '{k}' too short to be actionable.")
-        if FABRICATION_WORDS.search(f["issue"] + " " + f["how_to_improve"]):
-            ev = d.get("EVIDENCE_AUDIT.json")
-            if not (ev and ev["external_verification_performed"]):
-                res.err("X07", f"{fid}: alleges fabrication without external verification.")
+        if FABRICATION_WORDS.search(" ".join(str(f.get(k, "")) for k in
+                                            ("issue", "how_to_improve", "why_it_matters", "location", "evidence_quote"))):
+            res.err("X07", f"{fid}: uses fabrication language (fabricated/fake/non-existent) — not allowed, even negated; "
+                           "references are not externally verified.")
 
 
 def check_primary(d, res):
@@ -675,6 +682,8 @@ def check_report(d, res, report: Path):
     sp = d.get("SPECIALIST_REVIEW.json")
     if sp and sp["code_review"]["performed"] and C.PHRASE_STATIC_CODE not in md:
         res.err("X16", f"Report must state '{C.PHRASE_STATIC_CODE}'")
+    if FABRICATION_WORDS.search(md):
+        res.err("X16", "Report uses fabrication language (fabricated/fake/non-existent) — not allowed, even negated.")
     if re.search(r"(?i)\b(infallible|guaranteed (?:grade|mark)|definitive grade|100% accurate)\b", md):
         res.err("X16", "Report overstates certainty (AI assessment is not infallible).")
     if re.search(r"(/home/|/Users/|[A-Za-z]:\\\\Users\\\\)", md):
@@ -699,7 +708,7 @@ def run(trail: Path, require: list[str], check_draft: bool, report_path: Path | 
     checks = [
         lambda: check_manifest(d, res, inventory), lambda: check_classification(d, res),
         lambda: check_requirements(d, res, texts), lambda: check_rubric(d, res, texts),
-        lambda: check_blueprint(d, res), lambda: check_evidence_map(d, res), lambda: check_findings(d, res),
+        lambda: check_blueprint(d, res), lambda: check_evidence_map(d, res, trail), lambda: check_findings(d, res),
         lambda: check_primary(d, res), lambda: check_specialist(d, res), lambda: check_evidence_audit(d, res),
         lambda: check_coherence(d, res), lambda: check_second_marker(d, res), lambda: check_scores(d, res),
         lambda: check_verified(d, res), lambda: check_qa(d, res),
