@@ -1,0 +1,54 @@
+{
+  "case": "B_essay_brief_only",
+  "description": "Brief-only politics essay (POL4010) with explicit requirements but no marking rubric. The brief requires 1,500 words (+/-10%), Harvard referencing, at least 6 academic sources, a thesis in the introduction, evaluated counter-arguments, a conclusion that answers the question, and .docx submission. The submitted .docx essay (1,486 words before the reference list, including title lines) is otherwise sound but has two deliberate defects: (1) the reference list contains only 4 academic sources; (2) counter-arguments are mentioned in a single sentence at the start of 'Weighing the evidence' without evaluation. The audit must run in BRIEF_ONLY mode, must not award a numerical mark, and must flag both defects against the explicit requirements without importing irrelevant criteria (code, methodology, research questions).",
+  "expected_mode": "BRIEF_ONLY",
+  "expected_can_proceed": true,
+  "expect_release": true,
+  "expected_task_types": [
+    "Academic Essay"
+  ],
+  "numerical_marking_authorised": false,
+  "expected_total_available": null,
+  "required_specialist_reviews": [
+    "WRITTEN_WORK"
+  ],
+  "forbidden_specialist_reviews": [
+    "CODE",
+    "DATA_STATISTICS",
+    "PRESENTATION"
+  ],
+  "must_flag_requirements": [
+    {
+      "requirement_text_regex": "(?i)6 academic sources|at least 6|six",
+      "status_in": [
+        "MISSING",
+        "PARTIAL",
+        "WEAK"
+      ]
+    },
+    {
+      "requirement_text_regex": "(?i)counter",
+      "status_in": [
+        "MISSING",
+        "PARTIAL",
+        "WEAK"
+      ]
+    }
+  ],
+  "must_record_conflict": false,
+  "must_list_unanalysed": [],
+  "not_provided_must_include_regex": [],
+  "no_serious_finding_for_requirement_regex": [],
+  "report_must_contain": [
+    "NO AUTHORISED NUMERICAL MARKING SCHEME WAS PROVIDED.",
+    "REFERENCE AUTHENTICITY WAS NOT EXTERNALLY VERIFIED."
+  ],
+  "report_must_not_match_regex": [
+    "(?i)fabricated|fake reference|non-existent reference",
+    "/home/|/Users/",
+    "(?i)\\b\\d{1,3}\\s*/\\s*100\\b|out of 100"
+  ],
+  "findings_must_not_match_regex": [
+    "(?i)unit tests?|code quality|methodology chapter|research questions?"
+  ]
+}

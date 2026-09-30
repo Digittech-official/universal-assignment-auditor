@@ -1,0 +1,159 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_01_TASK_CLASSIFIER"
+    },
+    "task_type": {
+      "type": "string",
+      "enum": [
+        "Academic Essay",
+        "Dissertation / Thesis",
+        "Research Report",
+        "Literature Review",
+        "Business / Management Report",
+        "Case Study",
+        "Reflective Assignment",
+        "Scientific / Laboratory Report",
+        "Technical Report",
+        "Coding / Software Project",
+        "Data Analysis / Statistics",
+        "Presentation",
+        "Project Documentation",
+        "Mixed Assignment",
+        "Other"
+      ]
+    },
+    "secondary_task_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Academic Essay",
+          "Dissertation / Thesis",
+          "Research Report",
+          "Literature Review",
+          "Business / Management Report",
+          "Case Study",
+          "Reflective Assignment",
+          "Scientific / Laboratory Report",
+          "Technical Report",
+          "Coding / Software Project",
+          "Data Analysis / Statistics",
+          "Presentation",
+          "Project Documentation",
+          "Mixed Assignment",
+          "Other"
+        ]
+      }
+    },
+    "discipline": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ]
+    },
+    "classification_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string"
+          },
+          "observation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "observation"
+        ]
+      },
+      "minItems": 1
+    },
+    "deliverable_formats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "specialist_reviews_required": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "CODE",
+          "DATA_STATISTICS",
+          "PRESENTATION",
+          "WRITTEN_WORK",
+          "RESEARCH_METHODS",
+          "SCIENTIFIC_LAB",
+          "BUSINESS_ANALYSIS",
+          "REFLECTIVE_PRACTICE",
+          "TECHNICAL_DOCUMENTATION"
+        ]
+      }
+    },
+    "coding_review_required": {
+      "type": "boolean"
+    },
+    "statistical_review_required": {
+      "type": "boolean"
+    },
+    "presentation_review_required": {
+      "type": "boolean"
+    },
+    "numerical_marking_authorised": {
+      "type": "boolean"
+    },
+    "numerical_marking_basis": {
+      "type": "string"
+    },
+    "conventions_not_applicable": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "convention": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "convention",
+          "reason"
+        ]
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "agent",
+    "task_type",
+    "secondary_task_types",
+    "discipline",
+    "confidence",
+    "classification_evidence",
+    "deliverable_formats",
+    "specialist_reviews_required",
+    "coding_review_required",
+    "statistical_review_required",
+    "presentation_review_required",
+    "numerical_marking_authorised",
+    "numerical_marking_basis",
+    "conventions_not_applicable"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Task classification"
+}

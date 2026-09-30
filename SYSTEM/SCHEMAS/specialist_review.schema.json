@@ -1,0 +1,347 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_07_SPECIALIST_TECHNICAL_REVIEWER"
+    },
+    "reviews_activated": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "CODE",
+          "DATA_STATISTICS",
+          "PRESENTATION",
+          "WRITTEN_WORK",
+          "RESEARCH_METHODS",
+          "SCIENTIFIC_LAB",
+          "BUSINESS_ANALYSIS",
+          "REFLECTIVE_PRACTICE",
+          "TECHNICAL_DOCUMENTATION"
+        ]
+      }
+    },
+    "reviews_not_activated": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "review": {
+            "type": "string",
+            "enum": [
+              "CODE",
+              "DATA_STATISTICS",
+              "PRESENTATION",
+              "WRITTEN_WORK",
+              "RESEARCH_METHODS",
+              "SCIENTIFIC_LAB",
+              "BUSINESS_ANALYSIS",
+              "REFLECTIVE_PRACTICE",
+              "TECHNICAL_DOCUMENTATION"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "review",
+          "reason"
+        ]
+      }
+    },
+    "code_review": {
+      "type": "object",
+      "properties": {
+        "performed": {
+          "type": "boolean"
+        },
+        "execution_performed": {
+          "type": "boolean"
+        },
+        "execution_statement": {
+          "type": "string"
+        },
+        "not_performed_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "files_reviewed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "static_checks_run": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "command": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "command",
+              "result"
+            ]
+          }
+        },
+        "summary": {
+          "type": "string"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "aspect": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "aspect",
+              "result"
+            ]
+          }
+        }
+      },
+      "required": [
+        "performed",
+        "execution_performed",
+        "execution_statement"
+      ]
+    },
+    "data_review": {
+      "type": "object",
+      "properties": {
+        "performed": {
+          "type": "boolean"
+        },
+        "not_performed_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "summary": {
+          "type": "string"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "aspect": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "aspect",
+              "result"
+            ]
+          }
+        }
+      },
+      "required": [
+        "performed"
+      ]
+    },
+    "presentation_review": {
+      "type": "object",
+      "properties": {
+        "performed": {
+          "type": "boolean"
+        },
+        "not_performed_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "summary": {
+          "type": "string"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "aspect": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "aspect",
+              "result"
+            ]
+          }
+        }
+      },
+      "required": [
+        "performed"
+      ]
+    },
+    "written_review": {
+      "type": "object",
+      "properties": {
+        "performed": {
+          "type": "boolean"
+        },
+        "not_performed_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "summary": {
+          "type": "string"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "aspect": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "aspect",
+              "result"
+            ]
+          }
+        }
+      },
+      "required": [
+        "performed"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "pattern": "^F(6|7|8|9|10)-\\d{3,}$"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "CRITICAL",
+              "MAJOR",
+              "MODERATE",
+              "MINOR"
+            ]
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "MANDATORY_REQUIREMENT",
+              "RUBRIC_CRITERION",
+              "BEST_PRACTICE"
+            ]
+          },
+          "requirement_ref": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "issue": {
+            "type": "string"
+          },
+          "why_it_matters": {
+            "type": "string"
+          },
+          "how_to_improve": {
+            "type": "string"
+          },
+          "evidence_quote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "affected_criterion_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CRIT-\\d{3,}$"
+            }
+          },
+          "category": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "finding_id",
+          "severity",
+          "basis",
+          "requirement_ref",
+          "location",
+          "issue",
+          "why_it_matters",
+          "how_to_improve"
+        ]
+      }
+    },
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "agent",
+    "reviews_activated",
+    "reviews_not_activated",
+    "code_review",
+    "data_review",
+    "presentation_review",
+    "written_review",
+    "findings",
+    "strengths",
+    "limitations"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Specialist technical review"
+}

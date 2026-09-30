@@ -1,0 +1,111 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_04_QUALITY_BLUEPRINT_ARCHITECT"
+    },
+    "task_type": {
+      "type": "string",
+      "enum": [
+        "Academic Essay",
+        "Dissertation / Thesis",
+        "Research Report",
+        "Literature Review",
+        "Business / Management Report",
+        "Case Study",
+        "Reflective Assignment",
+        "Scientific / Laboratory Report",
+        "Technical Report",
+        "Coding / Software Project",
+        "Data Analysis / Statistics",
+        "Presentation",
+        "Project Documentation",
+        "Mixed Assignment",
+        "Other"
+      ]
+    },
+    "structure_model": {
+      "type": "string"
+    },
+    "expectations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^BP-\\d{3,}$"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "MANDATORY_REQUIREMENT",
+              "RUBRIC_DERIVED_EXPECTATION",
+              "BEST_PRACTICE_RECOMMENDATION"
+            ]
+          },
+          "text": {
+            "type": "string"
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "applies_to": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "category",
+          "text",
+          "source_ids",
+          "rationale"
+        ]
+      }
+    },
+    "conventions_applied": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conventions_explicitly_not_applied": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "convention": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "convention",
+          "reason"
+        ]
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "agent",
+    "task_type",
+    "structure_model",
+    "expectations",
+    "conventions_applied",
+    "conventions_explicitly_not_applied"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Quality blueprint"
+}

@@ -1,0 +1,58 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 SYSTEM/TOOLS/prepare_run.py:*)",
+      "Bash(python3 SYSTEM/TOOLS/validate.py:*)",
+      "Bash(python3 SYSTEM/TOOLS/compute_scores.py:*)",
+      "Bash(python3 SYSTEM/TOOLS/build_rtm.py:*)",
+      "Bash(python3 SYSTEM/TOOLS/text_stats.py:*)",
+      "Bash(python3 SYSTEM/TOOLS/release_report.py:*)",
+      "Bash(python SYSTEM/TOOLS/prepare_run.py:*)",
+      "Bash(python SYSTEM/TOOLS/validate.py:*)",
+      "Bash(python SYSTEM/TOOLS/compute_scores.py:*)",
+      "Bash(python SYSTEM/TOOLS/build_rtm.py:*)",
+      "Bash(python SYSTEM/TOOLS/text_stats.py:*)",
+      "Bash(python SYSTEM/TOOLS/release_report.py:*)",
+      "Bash(python3 -m py_compile:*)",
+      "Bash(python3 -m json.tool:*)",
+      "Bash(node --check:*)",
+      "Bash(mkdir -p OUTPUT/:*)",
+      "Bash(cp -r OUTPUT/_work/:*)",
+      "Bash(cp -r INPUT/04_COMPLETED_ASSIGNMENT/:*)",
+      "Bash(echo:*)",
+      "Bash(ls:*)",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Read(INPUT/**)",
+      "Read(OUTPUT/**)",
+      "Read(SYSTEM/**)",
+      "Edit(OUTPUT/**)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Edit(INPUT/**)",
+      "Bash(git add -f:*)",
+      "Bash(git add --force:*)",
+      "Bash(git add INPUT:*)",
+      "Bash(git add OUTPUT:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/SYSTEM/TOOLS/hooks/guard_bash.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

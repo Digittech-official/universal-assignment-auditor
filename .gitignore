@@ -1,0 +1,83 @@
+# =====================================================================
+# UNIVERSAL ASSIGNMENT AUDITOR — PRIVACY-CRITICAL IGNORE RULES
+# =====================================================================
+# Real assignment material and generated audits must NEVER be committed.
+# Only the folder skeleton (.gitkeep) and the INPUT/README.md guide are
+# tracked. Do not weaken these rules. See SYSTEM/RULES/PRIVACY_POLICY.md.
+# ---------------------------------------------------------------------
+
+# --- Operational INPUT: ignore everything, keep the skeleton ---
+/INPUT/**
+!/INPUT/
+!/INPUT/README.md
+!/INPUT/*/
+!/INPUT/*/.gitkeep
+
+# --- Generated OUTPUT: ignore everything, keep the skeleton ---
+/OUTPUT/**
+!/OUTPUT/
+!/OUTPUT/.gitkeep
+
+# --- Test run scratch (fixtures themselves ARE tracked; runs are not) ---
+/SYSTEM/TESTS/runs/
+/SYSTEM/TESTS/_generated/
+
+# --- Credentials / secrets ---
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+id_rsa*
+id_ed25519*
+credentials*.json
+secrets*.json
+*secret*
+!SYSTEM/**/*secret*.md
+.netrc
+.npmrc
+.pypirc
+
+# --- Claude Code local (per-user) settings ---
+.claude/settings.local.json
+.claude/*.local.*
+CLAUDE.local.md
+
+# --- Python / runtime artefacts ---
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+.coverage
+htmlcov/
+node_modules/
+
+# --- Temporary / lock files ---
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+~$*
+.~lock.*#
+*.log
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+Icon?
+
+# --- Editors ---
+.vscode/
+.idea/
+*.code-workspace

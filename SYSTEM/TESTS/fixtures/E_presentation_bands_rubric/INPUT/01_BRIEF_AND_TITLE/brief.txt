@@ -1,0 +1,24 @@
+NORTHBRIDGE UNIVERSITY - DEPARTMENT OF ENVIRONMENTAL SCIENCE
+ENV3010 Sustainability in Practice
+Assessment 1: Individual Presentation
+
+TASK
+Prepare a 10-minute presentation proposing a sustainability initiative for a university campus. Your audience is the University Estates Committee, who must decide whether to support the initiative.
+
+REQUIREMENTS
+- Length: 10 minutes; 8 to 12 slides.
+- The presentation must include:
+  1. A problem statement
+  2. Supporting evidence for the problem
+  3. The proposal (your sustainability initiative)
+  4. A cost estimate
+  5. An implementation timeline
+  6. Recommendations
+  7. A references slide
+- Speaker notes must be provided on every content slide (all slides except the title slide and the references slide).
+
+SUBMISSION
+Submit your slide deck as a .pptx file, including speaker notes, via the VLE.
+
+ASSESSMENT
+Feedback will be given using the ENV3010 presentation rubric.

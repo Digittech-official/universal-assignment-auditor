@@ -1,0 +1,16 @@
+NORTHBRIDGE UNIVERSITY - SCHOOL OF MATHEMATICS AND DATA SCIENCE
+STA2002 Applied Statistics
+Coursework 1: Regional Sales Analysis
+
+DATA
+You are given sales_data.xlsx, which contains the monthly sales (in thousands of units) for the North and South regions of a fictional retailer for each month of 2025.
+
+TASKS
+Using sales_data.xlsx:
+1. Calculate descriptive statistics (mean, median and standard deviation) of monthly sales for the North and South regions.
+2. Test whether mean monthly sales differ between the two regions using an appropriate statistical test at a significance level of alpha = 0.05. You must state the null and alternative hypotheses and check the assumptions of the test you use.
+3. Produce at least one chart. Every chart must have labelled axes and a title.
+4. Write an interpretation of your results of at most 800 words, in markdown cells of the notebook.
+
+SUBMISSION
+Submit a single Jupyter notebook containing your code, its outputs and your written interpretation, via the VLE.

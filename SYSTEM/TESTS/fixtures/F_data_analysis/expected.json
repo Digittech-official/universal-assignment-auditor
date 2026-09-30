@@ -1,0 +1,58 @@
+{
+  "case": "F_data_analysis",
+  "description": "STA2002 data analysis coursework with a brief only (no rubric): a single Jupyter notebook (code, stored outputs and a markdown interpretation) analysing sales_data.xlsx (12 months of North/South sales). Tests BRIEF_ONLY mode, notebook parsing including stored outputs, XLSX supporting data, DATA_STATISTICS specialist review, and cross-checking written figures against stored outputs. True values: North mean 101.67, median 101.5, SD 4.91; South mean 92.50, median 92.5, SD 3.90; Student t = 5.069, df = 22, p = 4.46e-05. Deliberate defects: (1) the bar chart code sets no axis labels and no title; (2) no assumption checks (normality / equal variance) are performed or discussed; (3) null and alternative hypotheses are not stated anywhere; (4) the Interpretation markdown cell states the North mean as 102.37, 0.7 higher than the stored descriptive-statistics output (101.67).",
+  "expected_mode": "BRIEF_ONLY",
+  "expected_can_proceed": true,
+  "expect_release": true,
+  "expected_task_types": [
+    "Data Analysis / Statistics"
+  ],
+  "numerical_marking_authorised": false,
+  "expected_total_available": null,
+  "required_specialist_reviews": [
+    "DATA_STATISTICS"
+  ],
+  "forbidden_specialist_reviews": [
+    "PRESENTATION"
+  ],
+  "must_flag_requirements": [
+    {
+      "requirement_text_regex": "(?i)hypothes",
+      "status_in": [
+        "MISSING",
+        "PARTIAL",
+        "WEAK"
+      ]
+    },
+    {
+      "requirement_text_regex": "(?i)label",
+      "status_in": [
+        "MISSING",
+        "PARTIAL",
+        "WEAK"
+      ]
+    },
+    {
+      "requirement_text_regex": "(?i)assumption",
+      "status_in": [
+        "MISSING",
+        "PARTIAL",
+        "WEAK"
+      ]
+    }
+  ],
+  "must_record_conflict": false,
+  "must_list_unanalysed": [],
+  "not_provided_must_include_regex": [],
+  "no_serious_finding_for_requirement_regex": [],
+  "report_must_contain": [
+    "NO AUTHORISED NUMERICAL MARKING SCHEME WAS PROVIDED."
+  ],
+  "report_must_not_match_regex": [
+    "(?i)fabricated|fake reference|non-existent reference",
+    "/home/|/Users/"
+  ],
+  "findings_must_not_match_regex": [
+    "(?i)literature review|harvard|research questions?"
+  ]
+}

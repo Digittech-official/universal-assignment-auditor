@@ -1,0 +1,50 @@
+{
+  "case": "D_technical_report_pdf",
+  "description": "IT5005 technical report (PDF) evaluating cloud backup options for a 25-person accounting firm, with a brief but no rubric. Tests BRIEF_ONLY mode (no numerical marking), PDF extraction, WRITTEN_WORK specialist review, and requirement-level detection of missing sections. The report is about 1,470 words excluding tables and references (within 1,500 ±10%), has a cost table and IEEE numeric citations [1]-[5] matching a reference list. Deliberate defects: (1) there is no risks and mitigation section at all; (2) only Option A is analysed in depth - Option B (consumer cloud storage) is dismissed in one sentence in section 3.2 without evaluation, so the requirement to compare at least two options is not met (Option B only appears in the cost table).",
+  "expected_mode": "BRIEF_ONLY",
+  "expected_can_proceed": true,
+  "expect_release": true,
+  "expected_task_types": [
+    "Technical Report"
+  ],
+  "numerical_marking_authorised": false,
+  "expected_total_available": null,
+  "required_specialist_reviews": [
+    "WRITTEN_WORK"
+  ],
+  "forbidden_specialist_reviews": [
+    "CODE",
+    "PRESENTATION"
+  ],
+  "must_flag_requirements": [
+    {
+      "requirement_text_regex": "(?i)risk",
+      "status_in": [
+        "MISSING",
+        "PARTIAL",
+        "WEAK"
+      ]
+    },
+    {
+      "requirement_text_regex": "(?i)at least two options|two options",
+      "status_in": [
+        "MISSING",
+        "PARTIAL",
+        "WEAK"
+      ]
+    }
+  ],
+  "must_record_conflict": false,
+  "must_list_unanalysed": [],
+  "not_provided_must_include_regex": [],
+  "no_serious_finding_for_requirement_regex": [],
+  "report_must_contain": [
+    "NO AUTHORISED NUMERICAL MARKING SCHEME WAS PROVIDED.",
+    "REFERENCE AUTHENTICITY WAS NOT EXTERNALLY VERIFIED."
+  ],
+  "report_must_not_match_regex": [
+    "(?i)fabricated|fake reference|non-existent reference",
+    "/home/|/Users/"
+  ],
+  "findings_must_not_match_regex": []
+}

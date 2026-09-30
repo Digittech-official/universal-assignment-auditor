@@ -1,0 +1,228 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_05_SUBMISSION_EVIDENCE_MAPPER"
+    },
+    "submission_file_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^FILE-\\d{3,}$"
+      },
+      "minItems": 1
+    },
+    "locations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "loc_id": {
+            "type": "string",
+            "pattern": "^LOC-\\d{3,}$"
+          },
+          "file_id": {
+            "type": "string",
+            "pattern": "^FILE-\\d{3,}$"
+          },
+          "location": {
+            "type": "string"
+          },
+          "element_type": {
+            "type": "string",
+            "enum": [
+              "TITLE",
+              "HEADING",
+              "SECTION",
+              "PARAGRAPH",
+              "ARGUMENT",
+              "CLAIM",
+              "CITATION",
+              "REFERENCE_LIST",
+              "TABLE",
+              "FIGURE",
+              "CALCULATION",
+              "CODE_FILE",
+              "FUNCTION",
+              "CLASS",
+              "MODULE",
+              "TEST",
+              "SLIDE",
+              "DATASET",
+              "OUTPUT",
+              "APPENDIX",
+              "METHODOLOGY",
+              "RESULTS",
+              "DISCUSSION",
+              "CONCLUSION",
+              "RECOMMENDATIONS",
+              "OTHER"
+            ]
+          },
+          "summary": {
+            "type": "string"
+          },
+          "heading": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc_id",
+          "file_id",
+          "location",
+          "element_type",
+          "summary"
+        ]
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "word_count_estimate": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "word_count_method": {
+          "type": "string"
+        },
+        "pages": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "slides": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "code_files": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "reference_entries": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "in_text_citations": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "tables": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "figures": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "tests": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "word_count_estimate",
+        "word_count_method"
+      ]
+    },
+    "requirement_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "requirement_id": {
+            "type": "string",
+            "pattern": "^REQ-\\d{3,}$"
+          },
+          "loc_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence_summary": {
+            "type": "string"
+          },
+          "coverage": {
+            "type": "string",
+            "enum": [
+              "FOUND",
+              "PARTIALLY_FOUND",
+              "NOT_FOUND",
+              "NOT_ASSESSABLE"
+            ]
+          }
+        },
+        "required": [
+          "requirement_id",
+          "loc_ids",
+          "evidence_summary",
+          "coverage"
+        ]
+      }
+    },
+    "criterion_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "criterion_id": {
+            "type": "string",
+            "pattern": "^CRIT-\\d{3,}$"
+          },
+          "loc_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence_summary": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "criterion_id",
+          "loc_ids",
+          "evidence_summary"
+        ]
+      }
+    },
+    "unmapped_content": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "agent",
+    "submission_file_ids",
+    "locations",
+    "metrics",
+    "requirement_links",
+    "criterion_links",
+    "unmapped_content"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Submission evidence map"
+}

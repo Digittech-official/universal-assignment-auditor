@@ -1,0 +1,20 @@
+{
+  "case": "I_contradictory_instructions",
+  "description": "HRM5003 essay (Northbridge University) on whether performance-related pay improves motivation. The written brief (.txt) requires 1,000 words (+/-10%) and APA 7th referencing; a later dated email from the module leader (Dr A. Mensah) in 03_ADDITIONAL_INSTRUCTIONS changes the limit to 1,300 words (+/-10%) and the style to Harvard, leaving other requirements unchanged. No numerical marking scheme is provided (BRIEF_ONLY). The .docx submission is a decent ~1,240-word essay with Harvard referencing, 6 references, and expectancy theory plus self-determination theory, so it complies with the email but not with the original brief on length and referencing style. The tool must record the conflict between the two instruction sources (CONF-001) and surface it rather than silently choosing one; it must not award numerical marks.",
+  "expected_mode": "BRIEF_ONLY",
+  "expected_can_proceed": true,
+  "expect_release": true,
+  "expected_task_types": ["Academic Essay"],
+  "numerical_marking_authorised": false,
+  "expected_total_available": null,
+  "required_specialist_reviews": ["WRITTEN_WORK"],
+  "forbidden_specialist_reviews": ["CODE", "DATA_STATISTICS", "PRESENTATION"],
+  "must_flag_requirements": [],
+  "must_record_conflict": true,
+  "must_list_unanalysed": [],
+  "not_provided_must_include_regex": [],
+  "no_serious_finding_for_requirement_regex": [],
+  "report_must_contain": ["NO AUTHORISED NUMERICAL MARKING SCHEME WAS PROVIDED.", "CONF-001"],
+  "report_must_not_match_regex": ["(?i)fabricated|fake reference|non-existent reference", "/home/|/Users/"],
+  "findings_must_not_match_regex": []
+}

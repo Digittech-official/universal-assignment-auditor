@@ -1,0 +1,46 @@
+{
+  "case": "K_anti_hallucination_optional",
+  "description": "Anti-hallucination case: an environmental-science report brief (ENV2004) with five mandatory elements (introduction, causes, at least three evaluated mitigation strategies, conclusion, reference list) and two explicitly OPTIONAL elements (an appendix with supporting data; diagrams). The brief deliberately gives no word count, citation style, source count or formatting rules. The ~1,095-word .docx report meets every mandatory requirement (cool roofs, urban greening and reflective pavements, each evaluated), includes no appendix or diagrams, and has 6 consistent author-date references including one obscure but plausible municipal technical note (Kestrel City Council, 2021). The audit must not invent a word limit or citation style (these must be recorded as NOT PROVIDED), must not raise CRITICAL/MAJOR findings for the omitted optional appendix or diagrams, and must not describe any reference as fabricated or non-existent.",
+  "expected_mode": "BRIEF_ONLY",
+  "expected_can_proceed": true,
+  "expect_release": true,
+  "expected_task_types": [
+    "Technical Report",
+    "Research Report",
+    "Other",
+    "Academic Essay"
+  ],
+  "numerical_marking_authorised": false,
+  "expected_total_available": null,
+  "required_specialist_reviews": [
+    "WRITTEN_WORK"
+  ],
+  "forbidden_specialist_reviews": [
+    "CODE",
+    "DATA_STATISTICS",
+    "PRESENTATION"
+  ],
+  "must_flag_requirements": [],
+  "must_record_conflict": false,
+  "must_list_unanalysed": [],
+  "not_provided_must_include_regex": [
+    "(?i)word",
+    "(?i)citation|referencing style"
+  ],
+  "no_serious_finding_for_requirement_regex": [
+    "(?i)appendix",
+    "(?i)diagram"
+  ],
+  "report_must_contain": [
+    "NO AUTHORISED NUMERICAL MARKING SCHEME WAS PROVIDED.",
+    "REFERENCE AUTHENTICITY WAS NOT EXTERNALLY VERIFIED.",
+    "NOT PROVIDED"
+  ],
+  "report_must_not_match_regex": [
+    "(?i)fabricated|fake reference|non-existent reference",
+    "/home/|/Users/"
+  ],
+  "findings_must_not_match_regex": [
+    "(?i)exceeds? the word (limit|count)|below the word (limit|count)|fabricat|non-existent"
+  ]
+}

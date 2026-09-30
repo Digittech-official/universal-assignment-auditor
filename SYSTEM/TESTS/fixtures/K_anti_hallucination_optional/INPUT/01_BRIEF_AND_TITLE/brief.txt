@@ -1,0 +1,18 @@
+Northbridge University - School of Geography and Environmental Science
+ENV2004 Urban Environments - Individual Report
+
+Task
+Write a report on urban heat islands and mitigation strategies for a mid-sized city.
+
+Your report must include:
+- an introduction to the urban heat island effect;
+- an explanation of the main causes of urban heat islands;
+- at least three mitigation strategies, each with an evaluation of its strengths and limitations;
+- a conclusion; and
+- a reference list.
+
+Optional elements
+You may include an appendix with supporting data if you wish.
+Diagrams are optional.
+
+Submit your report via the module VLE by the published deadline.

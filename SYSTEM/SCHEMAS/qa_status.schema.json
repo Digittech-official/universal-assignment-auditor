@@ -1,0 +1,126 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_13_FINAL_QA_CONTROLLER"
+    },
+    "qa_status": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "iteration": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "check_id": {
+            "type": "string",
+            "enum": [
+              "QA-01",
+              "QA-02",
+              "QA-03",
+              "QA-04",
+              "QA-05",
+              "QA-06",
+              "QA-07",
+              "QA-08",
+              "QA-09",
+              "QA-10",
+              "QA-11",
+              "QA-12",
+              "QA-13",
+              "QA-14"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "result": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL",
+              "NOT APPLICABLE"
+            ]
+          },
+          "details": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "check_id",
+          "description",
+          "result",
+          "details"
+        ]
+      },
+      "minItems": 14
+    },
+    "deterministic_validation": {
+      "type": "object",
+      "properties": {
+        "validator_run": {
+          "type": "boolean"
+        },
+        "validator_passed": {
+          "type": "boolean"
+        },
+        "report_path": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "validator_run",
+        "validator_passed",
+        "report_path"
+      ]
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "check_id": {
+            "type": "string"
+          },
+          "stage_to_rerun": {
+            "type": "string"
+          },
+          "correction_required": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "check_id",
+          "stage_to_rerun",
+          "correction_required"
+        ]
+      }
+    },
+    "release_authorised": {
+      "type": "boolean"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "agent",
+    "qa_status",
+    "iteration",
+    "checks",
+    "deterministic_validation",
+    "failures",
+    "release_authorised"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QA status"
+}

@@ -1,0 +1,179 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_12_CRITICAL_FINDINGS_VERIFIER"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "pattern": "^F(6|7|8|9|10)-\\d{3,}$"
+          },
+          "source_agent": {
+            "type": "string"
+          },
+          "original_severity": {
+            "type": "string",
+            "enum": [
+              "CRITICAL",
+              "MAJOR",
+              "MODERATE",
+              "MINOR"
+            ]
+          },
+          "verification": {
+            "type": "object",
+            "properties": {
+              "requirement_real": {
+                "type": "boolean"
+              },
+              "requirement_source_checked": {
+                "type": "string"
+              },
+              "evidence_accurate": {
+                "type": "boolean"
+              },
+              "location_correct": {
+                "type": "boolean"
+              },
+              "proportionate": {
+                "type": "boolean"
+              },
+              "instruction_understood": {
+                "type": "boolean"
+              },
+              "false_positive": {
+                "type": "boolean"
+              },
+              "notes": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "requirement_real",
+              "requirement_source_checked",
+              "evidence_accurate",
+              "location_correct",
+              "proportionate",
+              "instruction_understood",
+              "false_positive",
+              "notes"
+            ]
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "CONFIRMED",
+              "CORRECTED",
+              "DOWNGRADED",
+              "REMOVED"
+            ]
+          },
+          "final_severity": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "CRITICAL",
+              "MAJOR",
+              "MODERATE",
+              "MINOR",
+              null
+            ]
+          },
+          "final_text": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string"
+              },
+              "issue": {
+                "type": "string"
+              },
+              "requirement_ref": {
+                "type": "string"
+              },
+              "why_it_matters": {
+                "type": "string"
+              },
+              "how_to_improve": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "location",
+              "issue",
+              "requirement_ref",
+              "why_it_matters",
+              "how_to_improve"
+            ]
+          },
+          "affected_criterion_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CRIT-\\d{3,}$"
+            }
+          }
+        },
+        "required": [
+          "finding_id",
+          "source_agent",
+          "original_severity",
+          "verification",
+          "outcome",
+          "final_severity",
+          "final_text"
+        ]
+      }
+    },
+    "requires_score_readjudication": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^CRIT-\\d{3,}$"
+      }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "checked": {
+          "type": "integer"
+        },
+        "confirmed": {
+          "type": "integer"
+        },
+        "corrected": {
+          "type": "integer"
+        },
+        "downgraded": {
+          "type": "integer"
+        },
+        "removed": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "checked",
+        "confirmed",
+        "corrected",
+        "downgraded",
+        "removed"
+      ]
+    }
+  },
+  "required": [
+    "agent",
+    "findings",
+    "requires_score_readjudication",
+    "summary"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Verified findings"
+}

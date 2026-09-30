@@ -1,0 +1,266 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_10_INDEPENDENT_SECOND_MARKER"
+    },
+    "independence_statement": {
+      "type": "string"
+    },
+    "requirement_challenges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "requirement_id": {
+            "type": "string",
+            "pattern": "^REQ-\\d{3,}$"
+          },
+          "primary_status": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "PARTIAL",
+              "WEAK",
+              "MISSING",
+              "NOT APPLICABLE",
+              "CANNOT VERIFY"
+            ]
+          },
+          "second_status": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "PARTIAL",
+              "WEAK",
+              "MISSING",
+              "NOT APPLICABLE",
+              "CANNOT VERIFY"
+            ]
+          },
+          "agree": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "evidence_location": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "requirement_id",
+          "primary_status",
+          "second_status",
+          "agree",
+          "reason"
+        ]
+      }
+    },
+    "criterion_challenges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "criterion_id": {
+            "type": "string",
+            "pattern": "^CRIT-\\d{3,}$"
+          },
+          "primary_mark": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "second_mark": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "primary_level": {
+            "type": "string"
+          },
+          "second_level": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "AGREE",
+              "OVER_MARKED",
+              "UNDER_MARKED"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "criterion_id",
+          "primary_mark",
+          "second_mark",
+          "primary_level",
+          "second_level",
+          "direction",
+          "reason",
+          "evidence"
+        ]
+      }
+    },
+    "missed_requirements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unsupported_criticisms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "pattern": "^F(6|7|8|9|10)-\\d{3,}$"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "finding_id",
+          "reason"
+        ]
+      }
+    },
+    "false_positives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "pattern": "^F(6|7|8|9|10)-\\d{3,}$"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "finding_id",
+          "reason"
+        ]
+      }
+    },
+    "overlooked_strengths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "misinterpreted_descriptors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "improper_penalties": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "pattern": "^F(6|7|8|9|10)-\\d{3,}$"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "CRITICAL",
+              "MAJOR",
+              "MODERATE",
+              "MINOR"
+            ]
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "MANDATORY_REQUIREMENT",
+              "RUBRIC_CRITERION",
+              "BEST_PRACTICE"
+            ]
+          },
+          "requirement_ref": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "issue": {
+            "type": "string"
+          },
+          "why_it_matters": {
+            "type": "string"
+          },
+          "how_to_improve": {
+            "type": "string"
+          },
+          "evidence_quote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "affected_criterion_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CRIT-\\d{3,}$"
+            }
+          },
+          "category": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "finding_id",
+          "severity",
+          "basis",
+          "requirement_ref",
+          "location",
+          "issue",
+          "why_it_matters",
+          "how_to_improve"
+        ]
+      }
+    },
+    "summary": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "agent",
+    "independence_statement",
+    "requirement_challenges",
+    "criterion_challenges",
+    "missed_requirements",
+    "unsupported_criticisms",
+    "false_positives",
+    "overlooked_strengths",
+    "misinterpreted_descriptors",
+    "improper_penalties",
+    "findings"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Second marker review"
+}

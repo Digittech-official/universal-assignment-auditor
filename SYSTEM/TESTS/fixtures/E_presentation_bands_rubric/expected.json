@@ -1,0 +1,52 @@
+{
+  "case": "E_presentation_bands_rubric",
+  "description": "ENV3010 presentation (PPTX, 9 slides) proposing a campus refill-station sustainability initiative, with a brief and a purely qualitative rubric (Excellent/Good/Satisfactory/Poor, explicitly no numerical marks). Tests RUBRIC mode without numerical marking authorisation (no invented scores), speaker-notes extraction, and PRESENTATION specialist review only. Deliberate defects: (1) there is no implementation timeline slide or timeline content anywhere although the brief requires one; (2) speaker notes are missing on two content slides (slide 6 'Benefits' and slide 8 'Conclusion'); all other content slides have notes.",
+  "expected_mode": "RUBRIC",
+  "expected_can_proceed": true,
+  "expect_release": true,
+  "expected_task_types": [
+    "Presentation"
+  ],
+  "numerical_marking_authorised": false,
+  "expected_total_available": null,
+  "required_specialist_reviews": [
+    "PRESENTATION"
+  ],
+  "forbidden_specialist_reviews": [
+    "CODE",
+    "DATA_STATISTICS"
+  ],
+  "must_flag_requirements": [
+    {
+      "requirement_text_regex": "(?i)timeline",
+      "status_in": [
+        "MISSING",
+        "PARTIAL",
+        "WEAK"
+      ]
+    },
+    {
+      "requirement_text_regex": "(?i)speaker notes",
+      "status_in": [
+        "MISSING",
+        "PARTIAL",
+        "WEAK"
+      ]
+    }
+  ],
+  "must_record_conflict": false,
+  "must_list_unanalysed": [],
+  "not_provided_must_include_regex": [],
+  "no_serious_finding_for_requirement_regex": [],
+  "report_must_contain": [
+    "NO AUTHORISED NUMERICAL MARKING SCHEME WAS PROVIDED."
+  ],
+  "report_must_not_match_regex": [
+    "(?i)fabricated|fake reference|non-existent reference",
+    "/home/|/Users/",
+    "(?i)\\b\\d{1,3}\\s*/\\s*\\d{2,3}\\b|out of 100"
+  ],
+  "findings_must_not_match_regex": [
+    "(?i)word count|literature review|unit tests?"
+  ]
+}

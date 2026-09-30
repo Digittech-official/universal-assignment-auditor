@@ -1,0 +1,236 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_02_REQUIREMENT_EXTRACTION_SPECIALIST"
+    },
+    "analysis_mode": {
+      "type": "string",
+      "enum": [
+        "RUBRIC",
+        "BRIEF_ONLY",
+        "TITLE_TOPIC",
+        "CANNOT_PROCEED"
+      ]
+    },
+    "sources_read": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "pattern": "^FILE-\\d{3,}$"
+          },
+          "path": {
+            "type": "string"
+          },
+          "fully_read": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "file_id",
+          "path",
+          "fully_read"
+        ]
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^REQ-\\d{3,}$"
+          },
+          "text": {
+            "type": "string"
+          },
+          "verbatim_quote": {
+            "type": "string"
+          },
+          "source": {
+            "type": "object",
+            "properties": {
+              "file_id": {
+                "type": "string",
+                "pattern": "^FILE-\\d{3,}$"
+              },
+              "location": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "file_id",
+              "location"
+            ]
+          },
+          "source_priority": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "TITLE",
+              "TASK",
+              "PURPOSE",
+              "AIM",
+              "OBJECTIVE",
+              "RESEARCH_QUESTION",
+              "LEARNING_OUTCOME",
+              "WORD_COUNT",
+              "STRUCTURE",
+              "CONTENT",
+              "RESEARCH",
+              "METHODOLOGY",
+              "THEORY",
+              "SOURCES",
+              "SOURCE_DATE",
+              "CITATION_STYLE",
+              "CALCULATION",
+              "DATASET",
+              "STATISTICS",
+              "SOFTWARE",
+              "PROGRAMMING",
+              "ALGORITHM",
+              "TESTING",
+              "SCREENSHOTS",
+              "DIAGRAMS_TABLES_FIGURES",
+              "APPENDIX",
+              "REFLECTION",
+              "RECOMMENDATIONS",
+              "PRESENTATION",
+              "SLIDES",
+              "TIMING",
+              "TECHNICAL_SPEC",
+              "FORMATTING",
+              "SUBMISSION",
+              "PENALTY",
+              "OTHER"
+            ]
+          },
+          "obligation": {
+            "type": "string",
+            "enum": [
+              "MANDATORY",
+              "OPTIONAL",
+              "RECOMMENDED",
+              "PROHIBITION"
+            ]
+          },
+          "assessable_from_submission": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "linked_criterion_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CRIT-\\d{3,}$"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "verbatim_quote",
+          "source",
+          "source_priority",
+          "category",
+          "obligation",
+          "assessable_from_submission"
+        ]
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^CONF-\\d{3,}$"
+          },
+          "description": {
+            "type": "string"
+          },
+          "requirement_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^REQ-\\d{3,}$"
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "higher_priority_source": {
+            "type": "string"
+          },
+          "handling": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "description",
+          "requirement_ids",
+          "sources",
+          "higher_priority_source",
+          "handling"
+        ]
+      }
+    },
+    "not_provided": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "requirement_id": {
+            "type": "string",
+            "pattern": "^REQ-\\d{3,}$"
+          },
+          "issue": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "requirement_id",
+          "issue"
+        ]
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "agent",
+    "analysis_mode",
+    "sources_read",
+    "requirements",
+    "conflicts",
+    "not_provided"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Requirement register"
+}

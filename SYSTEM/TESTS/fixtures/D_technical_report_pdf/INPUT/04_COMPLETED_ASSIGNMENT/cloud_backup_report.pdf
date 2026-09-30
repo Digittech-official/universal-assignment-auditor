@@ -1,0 +1,207 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 4831 >>
+stream
+BT /F2 13 Tf 56 768 Td (Cloud Backup Options for Hollins & Pryce) Tj ET
+BT /F1 10 Tf 56 754 Td (IT5005 Information Systems Infrastructure - Assessment 2 Technical Report) Tj ET
+BT /F1 10 Tf 56 730 Td (Candidate 0000) Tj ET
+BT /F2 11 Tf 56 690 Td (1. Executive Summary) Tj ET
+BT /F1 10 Tf 56 676 Td (Hollins & Pryce, a 25-person accounting firm, currently relies on a weekly backup to an) Tj ET
+BT /F1 10 Tf 56 662 Td (external USB drive that is taken off site by one of the partners. This arrangement leaves up) Tj ET
+BT /F1 10 Tf 56 648 Td (to a week of work unprotected, depends on a single person and provides no protection against) Tj ET
+BT /F1 10 Tf 56 634 Td (ransomware that encrypts both the server and a connected drive. This report analyses the) Tj ET
+BT /F1 10 Tf 56 620 Td (firm's backup requirements, considers cloud backup options and evaluates them against five) Tj ET
+BT /F1 10 Tf 56 606 Td (criteria: security, recovery capability, compliance, ease of management and cost. The report) Tj ET
+BT /F1 10 Tf 56 592 Td (recommends adopting a managed cloud backup service, referred to here as Option A \(a) Tj ET
+BT /F1 10 Tf 56 578 Td (business-tier, image-based backup service with immutable storage hosted in a UK data) Tj ET
+BT /F1 10 Tf 56 564 Td (centre\). Option A meets every mandatory requirement, supports hourly backups of the file) Tj ET
+BT /F1 10 Tf 56 550 Td (server and database, and costs approximately GBP 3,420 per year, which is modest compared with) Tj ET
+BT /F1 10 Tf 56 536 Td (the potential cost of losing client records.) Tj ET
+BT /F2 11 Tf 56 496 Td (2. Requirements Analysis) Tj ET
+BT /F1 10 Tf 56 482 Td (The requirements were derived from a review of the firm's current infrastructure and an) Tj ET
+BT /F1 10 Tf 56 468 Td (informal discussion of the partners' priorities as described in the scenario. The firm) Tj ET
+BT /F1 10 Tf 56 454 Td (operates one Windows file server holding approximately 1.2 TB of documents and a SQL-based) Tj ET
+BT /F1 10 Tf 56 440 Td (client accounting database of around 80 GB. Data grows at roughly 15% per year, so any) Tj ET
+BT /F1 10 Tf 56 426 Td (solution must comfortably accommodate 2 TB within three years.) Tj ET
+BT /F1 10 Tf 56 402 Td (Two recovery objectives are central to backup planning [1]. The recovery point objective) Tj ET
+BT /F1 10 Tf 56 388 Td (\(RPO\) is the maximum amount of data, measured in time, that the business can afford to lose.) Tj ET
+BT /F1 10 Tf 56 374 Td (For an accounting firm handling tax submissions with fixed deadlines, losing a week of work) Tj ET
+BT /F1 10 Tf 56 360 Td (is unacceptable; an RPO of no more than four hours is required during the working day. The) Tj ET
+BT /F1 10 Tf 56 346 Td (recovery time objective \(RTO\) is the maximum acceptable time to restore service. Staff can) Tj ET
+BT /F1 10 Tf 56 332 Td (work on local copies for a short period, so an RTO of eight hours for the full server and) Tj ET
+BT /F1 10 Tf 56 318 Td (one hour for individual files is appropriate.) Tj ET
+BT /F1 10 Tf 56 294 Td (Security and compliance requirements are significant. Accountants hold personal and) Tj ET
+BT /F1 10 Tf 56 280 Td (financial data about clients and must comply with UK GDPR, which requires appropriate) Tj ET
+BT /F1 10 Tf 56 266 Td (technical measures to protect personal data, including encryption and the ability to restore) Tj ET
+BT /F1 10 Tf 56 252 Td (availability in a timely manner [2]. Backups must therefore be encrypted in transit and at) Tj ET
+BT /F1 10 Tf 56 238 Td (rest, and data should remain in the UK or another jurisdiction with adequate data protection) Tj ET
+BT /F1 10 Tf 56 224 Td (arrangements. Professional bodies also expect client records to be retained for at least six) Tj ET
+BT /F1 10 Tf 56 210 Td (years, so the solution must support long-term retention.) Tj ET
+BT /F1 10 Tf 56 186 Td (Finally, ransomware is now one of the most common causes of data loss for small businesses) Tj ET
+BT /F1 10 Tf 56 172 Td ([3]. The solution must keep backup copies that cannot be altered or deleted by an attacker) Tj ET
+BT /F1 10 Tf 56 158 Td (who compromises the office network, a property often described as immutability. Because the) Tj ET
+BT /F1 10 Tf 56 144 Td (firm has no dedicated IT staff and relies on a part-time external contractor, the solution) Tj ET
+BT /F1 10 Tf 56 130 Td (must also be simple to manage and must alert someone automatically when a backup fails.) Tj ET
+BT /F1 10 Tf 56 106 Td (The evaluation criteria are therefore: \(1\) security, including encryption and immutability;) Tj ET
+BT /F1 10 Tf 56 92 Td (\(2\) recovery capability against the RPO and RTO; \(3\) compliance, including UK data residency) Tj ET
+BT /F1 10 Tf 56 78 Td (and six-year retention; \(4\) ease of management; and \(5\) cost over three years.) Tj ET
+BT /F1 8 Tf 290 30 Td (Page 1 of 4) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 4720 >>
+stream
+BT /F2 11 Tf 56 770 Td (3. Options Analysis) Tj ET
+BT /F2 9 Tf 56 742 Td (3.1 Option A: Managed image-based cloud backup service) Tj ET
+BT /F1 10 Tf 56 728 Td (Option A is a business-tier managed backup service of the kind offered by several) Tj ET
+BT /F1 10 Tf 56 714 Td (established vendors. A lightweight agent is installed on the file server and on the database) Tj ET
+BT /F1 10 Tf 56 700 Td (host. The agent takes an initial full image of each machine and then uploads incremental) Tj ET
+BT /F1 10 Tf 56 686 Td (changes on a schedule set by the administrator, which can be as frequent as every hour.) Tj ET
+BT /F1 10 Tf 56 672 Td (Backups are compressed and encrypted on the server using AES-256 before they leave the) Tj ET
+BT /F1 10 Tf 56 658 Td (office, and the encryption key can be held by the firm rather than the provider [4].) Tj ET
+BT /F1 10 Tf 56 634 Td (The service stores backups in a UK data centre and offers an immutable storage setting in) Tj ET
+BT /F1 10 Tf 56 620 Td (which backup copies cannot be deleted or changed for a defined period, even by an) Tj ET
+BT /F1 10 Tf 56 606 Td (administrator account. This directly addresses the ransomware requirement, because an) Tj ET
+BT /F1 10 Tf 56 592 Td (attacker who gains administrator access to the office network cannot destroy the recovery) Tj ET
+BT /F1 10 Tf 56 578 Td (points. Retention policies can be configured to keep daily versions for 30 days, monthly) Tj ET
+BT /F1 10 Tf 56 564 Td (versions for a year and yearly versions for seven years, which exceeds the six-year) Tj ET
+BT /F1 10 Tf 56 550 Td (retention expectation.) Tj ET
+BT /F1 10 Tf 56 526 Td (Recovery can be performed in two ways. Individual files and folders can be restored through) Tj ET
+BT /F1 10 Tf 56 512 Td (a web console within minutes, meeting the one-hour RTO for files. For a full server failure,) Tj ET
+BT /F1 10 Tf 56 498 Td (the image can be restored to replacement hardware or, as an interim measure, started as a) Tj ET
+BT /F1 10 Tf 56 484 Td (virtual machine in the provider's cloud so that staff can reconnect while the hardware is) Tj ET
+BT /F1 10 Tf 56 470 Td (repaired. The vendor documentation states that a 1.2 TB restore over the firm's 500 Mbps) Tj ET
+BT /F1 10 Tf 56 456 Td (connection would take approximately six hours, which is within the eight-hour RTO [4]. For) Tj ET
+BT /F1 10 Tf 56 442 Td (larger disasters the provider can ship a physical drive containing the backup.) Tj ET
+BT /F1 10 Tf 56 418 Td (Management is carried out through a web dashboard that shows the status of every protected) Tj ET
+BT /F1 10 Tf 56 404 Td (machine and sends email alerts when a job fails. This suits a firm without in-house IT) Tj ET
+BT /F1 10 Tf 56 390 Td (staff, since the external contractor can monitor the backups remotely and receive alerts.) Tj ET
+BT /F1 10 Tf 56 376 Td (The provider also publishes an independent ISO 27001 certification, which gives some) Tj ET
+BT /F1 10 Tf 56 362 Td (assurance about its security practices [5].) Tj ET
+BT /F2 9 Tf 56 324 Td (3.2 Option B: Consumer cloud storage synchronisation) Tj ET
+BT /F1 10 Tf 56 310 Td (Option B, synchronising the file server to a consumer-grade cloud storage account, was) Tj ET
+BT /F1 10 Tf 56 296 Td (briefly considered but is not suitable for a business of this kind and was not analysed) Tj ET
+BT /F1 10 Tf 56 282 Td (further.) Tj ET
+BT /F2 11 Tf 56 242 Td (4. Evaluation Against Criteria) Tj ET
+BT /F1 10 Tf 56 228 Td (Security: Option A fully meets the security criterion. Client-side AES-256 encryption means) Tj ET
+BT /F1 10 Tf 56 214 Td (data is protected before it leaves the office and while stored, and the firm controls the) Tj ET
+BT /F1 10 Tf 56 200 Td (encryption key. The immutable storage setting is the most important feature for this firm,) Tj ET
+BT /F1 10 Tf 56 186 Td (because it ensures that recent recovery points survive a ransomware attack. Multi-factor) Tj ET
+BT /F1 10 Tf 56 172 Td (authentication is available for the management console and should be enforced.) Tj ET
+BT /F1 10 Tf 56 148 Td (Recovery capability: Hourly incremental backups during office hours give an effective RPO of) Tj ET
+BT /F1 10 Tf 56 134 Td (one hour, well within the four-hour requirement. File-level restores through the console) Tj ET
+BT /F1 10 Tf 56 120 Td (take minutes, and full image restores are estimated at six hours, meeting the RTO. The) Tj ET
+BT /F1 10 Tf 56 106 Td (ability to boot a backup as a cloud virtual machine provides an additional fallback if) Tj ET
+BT /F1 10 Tf 56 92 Td (replacement hardware is delayed.) Tj ET
+BT /F1 10 Tf 56 68 Td (Compliance: Data is stored in the UK, which simplifies compliance with UK GDPR, and the) Tj ET
+BT /F1 8 Tf 290 30 Td (Page 2 of 4) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 4563 >>
+stream
+BT /F1 10 Tf 56 786 Td (provider offers a data processing agreement as required when a third party processes) Tj ET
+BT /F1 10 Tf 56 772 Td (personal data [2]. Configurable long-term retention satisfies the six-year requirement. The) Tj ET
+BT /F1 10 Tf 56 758 Td (firm should record the backup arrangement in its data protection documentation.) Tj ET
+BT /F1 10 Tf 56 734 Td (Ease of management: The central dashboard, automated scheduling and email alerting mean that) Tj ET
+BT /F1 10 Tf 56 720 Td (the backup process no longer depends on a partner remembering to take a drive home. The) Tj ET
+BT /F1 10 Tf 56 706 Td (external contractor can deploy the agents in less than a day, and routine monitoring should) Tj ET
+BT /F1 10 Tf 56 692 Td (take only a few minutes per week.) Tj ET
+BT /F1 10 Tf 56 668 Td (Cost: Option A is priced per protected server plus a charge for storage. The costs are) Tj ET
+BT /F1 10 Tf 56 654 Td (summarised in Table 1. Over three years, including an allowance for data growth and the) Tj ET
+BT /F1 10 Tf 56 640 Td (contractor's setup time, the total cost is approximately GBP 10,900. This compares favourably) Tj ET
+BT /F1 10 Tf 56 626 Td (with the likely cost of a serious data loss, which for small firms can include regulatory) Tj ET
+BT /F1 10 Tf 56 612 Td (penalties, lost fees and reputational damage [3].) Tj ET
+BT /F2 11 Tf 56 572 Td (5. Cost Comparison) Tj ET
+BT /F1 10 Tf 56 558 Td (Table 1. Estimated costs \(excluding VAT\).) Tj ET
+BT /F1 9 Tf 56 535 Td (Cost item   Option A: Managed cloud backup   Option B: Consumer cloud storage) Tj ET
+BT /F1 9 Tf 56 522 Td (Licence per server per year   GBP 420 ◊ 2 = GBP 840   GBP 0) Tj ET
+BT /F1 9 Tf 56 509 Td (Storage per year \(2 TB\)   GBP 2,280   GBP 192) Tj ET
+BT /F1 9 Tf 56 496 Td (Contractor setup \(one-off\)   GBP 600   GBP 150) Tj ET
+BT /F1 9 Tf 56 483 Td (Contractor monitoring per year   GBP 300   GBP 300) Tj ET
+BT /F1 9 Tf 56 470 Td (Year 1 total   GBP 4,020   GBP 642) Tj ET
+BT /F1 9 Tf 56 457 Td (Three-year total   GBP 10,860   GBP 1,626) Tj ET
+BT /F1 10 Tf 56 443 Td (Although Option B appears much cheaper, the table does not reflect the cost of the functions) Tj ET
+BT /F1 10 Tf 56 429 Td (it lacks. The additional cost of Option A is justified by the reduction in risk to the) Tj ET
+BT /F1 10 Tf 56 415 Td (firm's client data.) Tj ET
+BT /F2 11 Tf 56 375 Td (6. Recommendation) Tj ET
+BT /F1 10 Tf 56 361 Td (It is recommended that Hollins & Pryce adopt Option A, the managed image-based cloud backup) Tj ET
+BT /F1 10 Tf 56 347 Td (service, with the following configuration: hourly incremental backups of the file server and) Tj ET
+BT /F1 10 Tf 56 333 Td (database host between 07:00 and 19:00; a nightly full synchronisation; immutable retention) Tj ET
+BT /F1 10 Tf 56 319 Td (of at least 30 days; long-term retention of monthly and yearly copies for seven years;) Tj ET
+BT /F1 10 Tf 56 305 Td (client-side encryption with the key held by the firm; and multi-factor authentication for) Tj ET
+BT /F1 10 Tf 56 291 Td (all console accounts. The existing USB drive can be retained for one additional month as a) Tj ET
+BT /F1 10 Tf 56 277 Td (transitional local copy while the first full cloud backup completes.) Tj ET
+BT /F1 10 Tf 56 253 Td (The firm should ask its external contractor to carry out the installation, configure) Tj ET
+BT /F1 10 Tf 56 239 Td (alerting to both the contractor and the office manager, and perform a full test restore to a) Tj ET
+BT /F1 10 Tf 56 225 Td (spare machine within the first month. Test restores of sample files should then be carried) Tj ET
+BT /F1 10 Tf 56 211 Td (out each quarter, and a full restore test once a year, because a backup that has never been) Tj ET
+BT /F1 10 Tf 56 197 Td (restored cannot be relied upon [1]. With this arrangement the firm will move from a weekly,) Tj ET
+BT /F1 10 Tf 56 183 Td (manually handled backup to an automated, encrypted and ransomware-resistant solution that) Tj ET
+BT /F1 10 Tf 56 169 Td (meets its recovery objectives and its obligations under data protection law.) Tj ET
+BT /F2 11 Tf 56 129 Td (References) Tj ET
+BT /F1 10 Tf 56 115 Td ([1] National Institute of Standards and Technology, "Contingency Planning Guide for Federal) Tj ET
+BT /F1 10 Tf 56 101 Td (Information Systems," NIST SP 800-34 Rev. 1, Gaithersburg, MD, USA, 2010.) Tj ET
+BT /F1 10 Tf 56 77 Td ([2] Information Commissioner's Office, "Guide to the UK General Data Protection Regulation) Tj ET
+BT /F1 10 Tf 56 63 Td (\(UK GDPR\): Security," ICO, Wilmslow, UK, 2023.) Tj ET
+BT /F1 8 Tf 290 30 Td (Page 3 of 4) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 12 0 R >>
+endobj
+12 0 obj
+<< /Length 741 >>
+stream
+BT /F1 10 Tf 56 776 Td ([3] National Cyber Security Centre, "Small Business Guide: Cyber Security," NCSC, London,) Tj ET
+BT /F1 10 Tf 56 762 Td (UK, 2020.) Tj ET
+BT /F1 10 Tf 56 738 Td ([4] A. Patel and R. Moreno, "Image-based backup and cloud recovery for small enterprises,") Tj ET
+BT /F1 10 Tf 56 724 Td (Journal of Information Systems Practice, vol. 14, no. 2, pp. 45-58, 2022.) Tj ET
+BT /F1 10 Tf 56 700 Td ([5] International Organization for Standardization, "Information security, cybersecurity and) Tj ET
+BT /F1 10 Tf 56 686 Td (privacy protection - Information security management systems - Requirements," ISO/IEC) Tj ET
+BT /F1 10 Tf 56 672 Td (27001:2022, Geneva, Switzerland, 2022.) Tj ET
+BT /F1 8 Tf 290 30 Td (Page 4 of 4) Tj ET
+endstream
+endobj
+xref
+0 13
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000140 00000 n 
+0000000237 00000 n 
+0000000339 00000 n 
+0000000475 00000 n 
+0000005358 00000 n 
+0000005494 00000 n 
+0000010266 00000 n 
+0000010403 00000 n 
+0000015019 00000 n 
+0000015157 00000 n 
+trailer
+<< /Size 13 /Root 1 0 R >>
+startxref
+15950
+%%EOF

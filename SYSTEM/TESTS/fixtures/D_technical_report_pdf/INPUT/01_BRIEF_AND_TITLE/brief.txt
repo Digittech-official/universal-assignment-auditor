@@ -1,0 +1,26 @@
+NORTHBRIDGE UNIVERSITY - SCHOOL OF COMPUTING
+IT5005 Information Systems Infrastructure
+Assessment 2: Technical Report
+
+TASK
+Evaluate cloud backup options for a 25-person accounting firm and recommend one.
+
+SCENARIO
+Hollins & Pryce is a fictional accounting firm with 25 staff working from one office and, two days a week, from home. The firm currently backs up its file server and client accounting database to an external USB drive that a partner takes home each Friday. Following a near-miss hardware failure, the partners have asked you to evaluate cloud backup options and recommend one.
+
+REQUIREMENTS
+Your report must:
+1. Be 1,500 words (plus or minus 10%), excluding the reference list and tables.
+2. Include the following sections:
+   a. Executive summary
+   b. Requirements analysis (the firm's backup requirements, e.g. data volume, recovery objectives, compliance and security needs)
+   c. Options analysis comparing at least two options
+   d. Evaluation of the options against the criteria you have stated
+   e. Cost comparison table
+   f. Recommendation
+   g. Risks and mitigation
+3. Use IEEE referencing.
+4. Cite at least 4 sources.
+
+SUBMISSION
+Submit a single PDF via the VLE.

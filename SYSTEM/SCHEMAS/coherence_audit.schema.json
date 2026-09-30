@@ -1,0 +1,206 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_09_COHERENCE_AND_SYNCHRONISATION_AUDITOR"
+    },
+    "logical_chain_model": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2
+    },
+    "chain_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ALIGNED",
+              "PARTIAL",
+              "BROKEN",
+              "NOT APPLICABLE",
+              "CANNOT VERIFY"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "issue": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "status",
+          "evidence"
+        ]
+      }
+    },
+    "contradictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "locations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "locations",
+          "description"
+        ]
+      }
+    },
+    "repetition": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "irrelevant_content": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unanswered_objectives": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unsupported_conclusions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "specification_implementation_mismatches": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "methodology_results_mismatches": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "pattern": "^F(6|7|8|9|10)-\\d{3,}$"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "CRITICAL",
+              "MAJOR",
+              "MODERATE",
+              "MINOR"
+            ]
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "MANDATORY_REQUIREMENT",
+              "RUBRIC_CRITERION",
+              "BEST_PRACTICE"
+            ]
+          },
+          "requirement_ref": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "issue": {
+            "type": "string"
+          },
+          "why_it_matters": {
+            "type": "string"
+          },
+          "how_to_improve": {
+            "type": "string"
+          },
+          "evidence_quote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "affected_criterion_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CRIT-\\d{3,}$"
+            }
+          },
+          "category": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "finding_id",
+          "severity",
+          "basis",
+          "requirement_ref",
+          "location",
+          "issue",
+          "why_it_matters",
+          "how_to_improve"
+        ]
+      }
+    },
+    "weak_transitions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "agent",
+    "logical_chain_model",
+    "chain_links",
+    "contradictions",
+    "repetition",
+    "irrelevant_content",
+    "unanswered_objectives",
+    "unsupported_conclusions",
+    "specification_implementation_mismatches",
+    "methodology_results_mismatches",
+    "findings"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Coherence audit"
+}

@@ -1,0 +1,23 @@
+{
+  "case": "A_dissertation_rubric",
+  "description": "MSc Business Management mini-dissertation (BUS7021, Northbridge University) supplied as .docx with a numbered brief and a 100-mark criteria x percentage-band rubric with grade boundaries, so numerical marking is authorised (RUBRIC mode, total 100). The ~2,000-word submission is of reasonable quality but contains five deliberate defects: (1) the methodology has no ethical considerations section and never mentions ethics or consent, although the brief requires one; (2) the reference list has only 8 entries against a required minimum of 10 academic sources; (3) 'Kossek et al. (2014)' is cited in the literature review but has no reference-list entry; (4) 'Bloom, N. ... (2015)' appears in the reference list but is never cited in the text; (5) Objective 2 (effect of flexible working on job satisfaction) is not addressed in the conclusion, which only covers Objectives 1 and 3. Only written-work review should be activated.",
+  "expected_mode": "RUBRIC",
+  "expected_can_proceed": true,
+  "expect_release": true,
+  "expected_task_types": ["Dissertation / Thesis", "Research Report"],
+  "numerical_marking_authorised": true,
+  "expected_total_available": 100,
+  "required_specialist_reviews": ["WRITTEN_WORK"],
+  "forbidden_specialist_reviews": ["CODE", "PRESENTATION"],
+  "must_flag_requirements": [
+    {"requirement_text_regex": "(?i)ethic", "status_in": ["MISSING", "PARTIAL", "WEAK"]},
+    {"requirement_text_regex": "(?i)10 academic sources|minimum of 10|ten", "status_in": ["MISSING", "PARTIAL", "WEAK"]}
+  ],
+  "must_record_conflict": false,
+  "must_list_unanalysed": [],
+  "not_provided_must_include_regex": [],
+  "no_serious_finding_for_requirement_regex": [],
+  "report_must_contain": ["REFERENCE AUTHENTICITY WAS NOT EXTERNALLY VERIFIED."],
+  "report_must_not_match_regex": ["(?i)fabricated|fake reference|non-existent reference", "/home/|/Users/"],
+  "findings_must_not_match_regex": ["(?i)unit tests?|code coverage"]
+}

@@ -1,0 +1,196 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_08_REFERENCE_AND_EVIDENCE_AUDITOR"
+    },
+    "applicable": {
+      "type": "boolean"
+    },
+    "not_applicable_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "citation_style_required": {
+      "type": "string"
+    },
+    "citation_style_observed": {
+      "type": "string"
+    },
+    "in_text_citation_count": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "reference_list_count": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "citations_without_reference": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "references_without_citation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "formatting_issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unsupported_claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string"
+          },
+          "claim": {
+            "type": "string"
+          },
+          "issue": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "location",
+          "claim",
+          "issue"
+        ]
+      }
+    },
+    "source_requirement_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "requirement_id": {
+            "type": "string",
+            "pattern": "^REQ-\\d{3,}$"
+          },
+          "result": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "requirement_id",
+          "result"
+        ]
+      }
+    },
+    "external_verification_performed": {
+      "type": "boolean"
+    },
+    "authenticity_statement": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "pattern": "^F(6|7|8|9|10)-\\d{3,}$"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "CRITICAL",
+              "MAJOR",
+              "MODERATE",
+              "MINOR"
+            ]
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "MANDATORY_REQUIREMENT",
+              "RUBRIC_CRITERION",
+              "BEST_PRACTICE"
+            ]
+          },
+          "requirement_ref": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "issue": {
+            "type": "string"
+          },
+          "why_it_matters": {
+            "type": "string"
+          },
+          "how_to_improve": {
+            "type": "string"
+          },
+          "evidence_quote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "affected_criterion_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CRIT-\\d{3,}$"
+            }
+          },
+          "category": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "finding_id",
+          "severity",
+          "basis",
+          "requirement_ref",
+          "location",
+          "issue",
+          "why_it_matters",
+          "how_to_improve"
+        ]
+      }
+    },
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "agent",
+    "applicable",
+    "not_applicable_reason",
+    "citation_style_required",
+    "citation_style_observed",
+    "in_text_citation_count",
+    "reference_list_count",
+    "citations_without_reference",
+    "references_without_citation",
+    "formatting_issues",
+    "unsupported_claims",
+    "source_requirement_checks",
+    "external_verification_performed",
+    "authenticity_statement",
+    "findings"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Evidence & reference audit"
+}

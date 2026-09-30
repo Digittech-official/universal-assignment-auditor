@@ -1,0 +1,198 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_11_SCORE_ADJUDICATOR"
+    },
+    "applicable": {
+      "type": "boolean"
+    },
+    "not_applicable_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "aggregation_method": {
+      "type": "string",
+      "enum": [
+        "SUM",
+        "WEIGHTED_PERCENT",
+        "NONE"
+      ]
+    },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "criterion_id": {
+            "type": "string",
+            "pattern": "^CRIT-\\d{3,}$"
+          },
+          "max_marks": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "weight_percent": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "primary_mark": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "second_mark": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "disputed": {
+            "type": "boolean"
+          },
+          "resolution": {
+            "type": "object",
+            "properties": {
+              "rechecked_rubric_wording": {
+                "type": "string"
+              },
+              "rechecked_requirements": {
+                "type": "string"
+              },
+              "rechecked_evidence": {
+                "type": "string"
+              },
+              "rechecked_specialist_review": {
+                "type": "string"
+              },
+              "reasoning": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "rechecked_rubric_wording",
+              "rechecked_requirements",
+              "rechecked_evidence",
+              "rechecked_specialist_review",
+              "reasoning"
+            ]
+          },
+          "final_mark": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "final_level": {
+            "type": "string"
+          },
+          "descriptor_supporting": {
+            "type": "string"
+          },
+          "what_earned": {
+            "type": "string"
+          },
+          "what_prevented_higher": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "HIGH",
+              "MEDIUM",
+              "LOW"
+            ]
+          },
+          "weighted_contribution": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "criterion_id",
+          "max_marks",
+          "weight_percent",
+          "primary_mark",
+          "second_mark",
+          "disputed",
+          "resolution",
+          "final_mark",
+          "final_level",
+          "descriptor_supporting",
+          "what_earned",
+          "what_prevented_higher",
+          "confidence"
+        ]
+      }
+    },
+    "total": {
+      "type": "object",
+      "properties": {
+        "total_score": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "total_available": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "percentage": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "grade_band": {
+          "type": "string"
+        },
+        "computed_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "total_score",
+        "total_available",
+        "percentage",
+        "grade_band",
+        "computed_by"
+      ]
+    },
+    "verification_reconciled": {
+      "type": "boolean"
+    },
+    "calculation_log": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "agent",
+    "applicable",
+    "not_applicable_reason",
+    "aggregation_method",
+    "criteria",
+    "total",
+    "verification_reconciled"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Final score model"
+}

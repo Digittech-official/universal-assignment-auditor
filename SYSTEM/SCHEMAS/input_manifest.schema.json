@@ -1,0 +1,269 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_00_INPUT_INTEGRITY_CHECKER"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "pattern": "^FILE-\\d{3,}$"
+          },
+          "path": {
+            "type": "string"
+          },
+          "folder_role": {
+            "type": "string",
+            "enum": [
+              "brief",
+              "rubric",
+              "additional_instructions",
+              "submission",
+              "supporting",
+              "misplaced"
+            ]
+          },
+          "detected_role": {
+            "type": "string",
+            "enum": [
+              "BRIEF",
+              "TITLE_ONLY",
+              "RUBRIC",
+              "ADDITIONAL_INSTRUCTIONS",
+              "LEARNING_OUTCOMES",
+              "SUBMISSION",
+              "SUBMISSION_COMPONENT",
+              "SUPPORTING",
+              "DUPLICATE",
+              "UNKNOWN"
+            ]
+          },
+          "file_type": {
+            "type": "string"
+          },
+          "extraction_status": {
+            "type": "string",
+            "enum": [
+              "EXTRACTED",
+              "READ_BY_CLAUDE",
+              "PARTIAL",
+              "FAILED",
+              "UNSUPPORTED",
+              "EMPTY",
+              "SKIPPED_DUPLICATE"
+            ]
+          },
+          "analysed": {
+            "type": "boolean"
+          },
+          "not_analysed_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "text_source": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          },
+          "parent_archive": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "file_id",
+          "path",
+          "folder_role",
+          "detected_role",
+          "file_type",
+          "extraction_status",
+          "analysed",
+          "not_analysed_reason"
+        ]
+      }
+    },
+    "missing_inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "impact": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "item",
+          "impact"
+        ]
+      }
+    },
+    "duplicates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^FILE-\\d{3,}$"
+            }
+          },
+          "handling": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "file_ids",
+          "handling"
+        ]
+      }
+    },
+    "unreadable_files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "pattern": "^FILE-\\d{3,}$"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "file_id",
+          "reason"
+        ]
+      }
+    },
+    "conflicting_submissions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^FILE-\\d{3,}$"
+            }
+          },
+          "resolution": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "file_ids",
+          "resolution"
+        ]
+      }
+    },
+    "rubric_present": {
+      "type": "boolean"
+    },
+    "brief_present": {
+      "type": "boolean"
+    },
+    "submission_present": {
+      "type": "boolean"
+    },
+    "title_or_topic": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "source"
+      ]
+    },
+    "analysis_mode": {
+      "type": "string",
+      "enum": [
+        "RUBRIC",
+        "BRIEF_ONLY",
+        "TITLE_TOPIC",
+        "CANNOT_PROCEED"
+      ]
+    },
+    "mode_rationale": {
+      "type": "string"
+    },
+    "advisory_mode_overridden": {
+      "type": "boolean"
+    },
+    "can_proceed": {
+      "type": "boolean"
+    },
+    "blocking_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "early_conflicts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "misplaced_items": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "agent",
+    "run_id",
+    "files",
+    "missing_inputs",
+    "duplicates",
+    "unreadable_files",
+    "conflicting_submissions",
+    "rubric_present",
+    "brief_present",
+    "submission_present",
+    "title_or_topic",
+    "analysis_mode",
+    "mode_rationale",
+    "advisory_mode_overridden",
+    "can_proceed",
+    "blocking_reasons"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Input manifest"
+}

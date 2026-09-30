@@ -1,0 +1,16 @@
+{
+  "QA-01": "Every relevant source document was considered (manifest vs sources_read).",
+  "QA-02": "All explicit requirements were extracted (spot-check source documents against register).",
+  "QA-03": "Every requirement was assessed (register vs primary assessment).",
+  "QA-04": "Rubric interpretation is faithful (no stricter/looser wording, no invented criteria).",
+  "QA-05": "Numerical scoring appears only where authorised.",
+  "QA-06": "Score calculations are correct and reconcile (compute_scores.py / validate.py).",
+  "QA-07": "All CRITICAL and MAJOR findings were independently verified.",
+  "QA-08": "No contradictory recommendations remain.",
+  "QA-09": "No invented requirement appears (every REQ traces to a quoted source).",
+  "QA-10": "Limitations and unanalysed files are disclosed.",
+  "QA-11": "Technical claims are appropriately qualified (execution / reference verification statements).",
+  "QA-12": "Employee-facing feedback is actionable (location, issue, requirement, why, how).",
+  "QA-13": "Best practice is not presented as mandatory and task-inappropriate conventions are not applied.",
+  "QA-14": "Draft report contains all required sections and agrees with the audit trail."
+}

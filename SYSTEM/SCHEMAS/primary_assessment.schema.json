@@ -1,0 +1,333 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_06_PRIMARY_QUALITY_ASSESSOR"
+    },
+    "analysis_mode": {
+      "type": "string",
+      "enum": [
+        "RUBRIC",
+        "BRIEF_ONLY",
+        "TITLE_TOPIC",
+        "CANNOT_PROCEED"
+      ]
+    },
+    "requirement_assessments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "requirement_id": {
+            "type": "string",
+            "pattern": "^REQ-\\d{3,}$"
+          },
+          "requirement_text": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "PARTIAL",
+              "WEAK",
+              "MISSING",
+              "NOT APPLICABLE",
+              "CANNOT VERIFY"
+            ]
+          },
+          "evidence_location": {
+            "type": "string"
+          },
+          "evidence_present": {
+            "type": "string"
+          },
+          "missing_content": {
+            "type": "string"
+          },
+          "weakness": {
+            "type": "string"
+          },
+          "why_it_matters": {
+            "type": "string"
+          },
+          "improvement_action": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "CRITICAL",
+              "MAJOR",
+              "MODERATE",
+              "MINOR",
+              "NONE"
+            ]
+          }
+        },
+        "required": [
+          "requirement_id",
+          "requirement_text",
+          "status",
+          "evidence_location",
+          "evidence_present",
+          "missing_content",
+          "weakness",
+          "why_it_matters",
+          "improvement_action",
+          "priority"
+        ]
+      }
+    },
+    "criterion_assessments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "criterion_id": {
+            "type": "string",
+            "pattern": "^CRIT-\\d{3,}$"
+          },
+          "criterion": {
+            "type": "string"
+          },
+          "max_marks": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "rubric_descriptor": {
+            "type": "string"
+          },
+          "matched_descriptor_level": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "strengths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "weaknesses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "missing_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mark_range_considered": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "max": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "min",
+              "max"
+            ]
+          },
+          "provisional_mark": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "justification": {
+            "type": "object",
+            "properties": {
+              "what_earned": {
+                "type": "string"
+              },
+              "what_prevented_higher": {
+                "type": "string"
+              },
+              "descriptor_support": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "what_earned",
+              "what_prevented_higher",
+              "descriptor_support"
+            ]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "HIGH",
+              "MEDIUM",
+              "LOW"
+            ]
+          }
+        },
+        "required": [
+          "criterion_id",
+          "criterion",
+          "max_marks",
+          "rubric_descriptor",
+          "matched_descriptor_level",
+          "evidence",
+          "strengths",
+          "weaknesses",
+          "missing_evidence",
+          "mark_range_considered",
+          "provisional_mark",
+          "justification",
+          "confidence"
+        ]
+      }
+    },
+    "quality_dimensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dimension": {
+            "type": "string"
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "KNOWN_REQUIREMENT",
+              "BEST_PRACTICE"
+            ]
+          },
+          "rating": {
+            "type": "string",
+            "enum": [
+              "STRONG",
+              "ADEQUATE",
+              "WEAK",
+              "INADEQUATE",
+              "CANNOT VERIFY"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "improvement_action": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dimension",
+          "basis",
+          "rating",
+          "evidence",
+          "improvement_action"
+        ]
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "pattern": "^F(6|7|8|9|10)-\\d{3,}$"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "CRITICAL",
+              "MAJOR",
+              "MODERATE",
+              "MINOR"
+            ]
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "MANDATORY_REQUIREMENT",
+              "RUBRIC_CRITERION",
+              "BEST_PRACTICE"
+            ]
+          },
+          "requirement_ref": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "issue": {
+            "type": "string"
+          },
+          "why_it_matters": {
+            "type": "string"
+          },
+          "how_to_improve": {
+            "type": "string"
+          },
+          "evidence_quote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "affected_criterion_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CRIT-\\d{3,}$"
+            }
+          },
+          "category": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "finding_id",
+          "severity",
+          "basis",
+          "requirement_ref",
+          "location",
+          "issue",
+          "why_it_matters",
+          "how_to_improve"
+        ]
+      }
+    },
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "overall_summary": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "agent",
+    "analysis_mode",
+    "requirement_assessments",
+    "criterion_assessments",
+    "quality_dimensions",
+    "findings",
+    "strengths",
+    "overall_summary"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Primary assessment"
+}

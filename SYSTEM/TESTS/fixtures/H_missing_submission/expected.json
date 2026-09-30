@@ -1,0 +1,26 @@
+{
+  "case": "H_missing_submission",
+  "description": "Missing-submission case: a marketing plan brief (MKT3002) with 5 explicit requirements and a 100-mark rubric (Situation analysis 30, Segmentation & targeting 25, Marketing mix 30, Presentation 15) are provided, but 04_COMPLETED_ASSIGNMENT is empty. The system must not proceed, must not release FINAL_QUALITY_AUDIT.md, and must write OUTPUT/AUDIT_BLOCKED.md explaining that no completed assignment was found in 04_COMPLETED_ASSIGNMENT.",
+  "expected_mode": "CANNOT_PROCEED",
+  "expected_can_proceed": false,
+  "expect_release": false,
+  "expected_task_types": [],
+  "numerical_marking_authorised": null,
+  "expected_total_available": null,
+  "required_specialist_reviews": [],
+  "forbidden_specialist_reviews": [],
+  "must_flag_requirements": [],
+  "must_record_conflict": false,
+  "must_list_unanalysed": [],
+  "not_provided_must_include_regex": [],
+  "no_serious_finding_for_requirement_regex": [],
+  "report_must_contain": [
+    "AUDIT NOT RELEASED",
+    "04_COMPLETED_ASSIGNMENT"
+  ],
+  "report_must_not_match_regex": [
+    "(?i)fabricated|fake reference|non-existent reference",
+    "/home/|/Users/"
+  ],
+  "findings_must_not_match_regex": []
+}

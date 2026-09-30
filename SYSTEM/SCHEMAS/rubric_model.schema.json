@@ -1,0 +1,235 @@
+{
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string",
+      "const": "AGENT_03_RUBRIC_INTERPRETER"
+    },
+    "rubric_status": {
+      "type": "string",
+      "enum": [
+        "PROVIDED",
+        "NOT PROVIDED",
+        "PROVIDED_UNUSABLE"
+      ]
+    },
+    "source_file_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^FILE-\\d{3,}$"
+      }
+    },
+    "marking_scale_type": {
+      "type": "string",
+      "enum": [
+        "NUMERIC_MARKS",
+        "PERCENTAGE_WEIGHTED",
+        "BANDS_ONLY",
+        "NONE"
+      ]
+    },
+    "numerical_marking_authorised": {
+      "type": "boolean"
+    },
+    "authority_basis": {
+      "type": "string"
+    },
+    "aggregation_method": {
+      "type": "string",
+      "enum": [
+        "SUM",
+        "WEIGHTED_PERCENT",
+        "NONE"
+      ]
+    },
+    "total_available": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "grade_boundaries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "min": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "max": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "min",
+          "max"
+        ]
+      }
+    },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^CRIT-\\d{3,}$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description_verbatim": {
+            "type": "string"
+          },
+          "max_marks": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "weight_percent": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "descriptors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "level_label": {
+                  "type": "string"
+                },
+                "mark_range_min": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "mark_range_max": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "descriptor_text": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "level_label",
+                "mark_range_min",
+                "mark_range_max",
+                "descriptor_text"
+              ]
+            }
+          },
+          "linked_learning_outcomes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "linked_requirement_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^REQ-\\d{3,}$"
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description_verbatim",
+          "max_marks",
+          "weight_percent",
+          "descriptors"
+        ]
+      }
+    },
+    "arithmetic_check": {
+      "type": "object",
+      "properties": {
+        "criteria_max_sum": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "criteria_weight_sum": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "stated_total": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "consistent": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "criteria_max_sum",
+        "criteria_weight_sum",
+        "stated_total",
+        "consistent",
+        "notes"
+      ]
+    },
+    "interpretation_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "agent",
+    "rubric_status",
+    "source_file_ids",
+    "marking_scale_type",
+    "numerical_marking_authorised",
+    "authority_basis",
+    "aggregation_method",
+    "total_available",
+    "grade_boundaries",
+    "criteria",
+    "arithmetic_check",
+    "interpretation_notes",
+    "ambiguities"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Rubric model"
+}

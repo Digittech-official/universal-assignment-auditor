@@ -1,0 +1,59 @@
+{
+  "case": "C_coding_spec_rubric",
+  "description": "Python coding project (COMP1101 Inventory Manager CLI) supplied as a ZIP with a numbered specification and a weighted rubric (Functionality 40%, Code quality 20%, Testing 20%, Documentation 20%; each criterion out of 100 with Excellent/Good/Satisfactory/Weak/Fail bands; final mark = weighted percentage). Tests RUBRIC mode with authorised numerical marking out of 100, activation of the CODE specialist review only, static-only code review disclosure, and that no essay-style findings are produced. Deliberate defects: (1) average_price() in inventory/core.py divides by len(items) with no guard, so an empty inventory raises ZeroDivisionError; (2) remove_item() raises KeyError for an unknown name and cli.prompt_remove() does not catch it, so invalid input crashes the program; (3) tests/test_core.py covers only two functions (add_item, list_items) instead of at least three; (4) README.md explains how to run the program but not how to run the tests.",
+  "expected_mode": "RUBRIC",
+  "expected_can_proceed": true,
+  "expect_release": true,
+  "expected_task_types": [
+    "Coding / Software Project"
+  ],
+  "numerical_marking_authorised": true,
+  "expected_total_available": 100,
+  "required_specialist_reviews": [
+    "CODE"
+  ],
+  "forbidden_specialist_reviews": [
+    "PRESENTATION",
+    "DATA_STATISTICS"
+  ],
+  "must_flag_requirements": [
+    {
+      "requirement_text_regex": "(?i)invalid input|crash",
+      "status_in": [
+        "MISSING",
+        "PARTIAL",
+        "WEAK"
+      ]
+    },
+    {
+      "requirement_text_regex": "(?i)at least three|three functions",
+      "status_in": [
+        "MISSING",
+        "PARTIAL",
+        "WEAK"
+      ]
+    },
+    {
+      "requirement_text_regex": "(?i)README",
+      "status_in": [
+        "MISSING",
+        "PARTIAL",
+        "WEAK"
+      ]
+    }
+  ],
+  "must_record_conflict": false,
+  "must_list_unanalysed": [],
+  "not_provided_must_include_regex": [],
+  "no_serious_finding_for_requirement_regex": [],
+  "report_must_contain": [
+    "CODE WAS REVIEWED STATICALLY; EXECUTION WAS NOT VERIFIED."
+  ],
+  "report_must_not_match_regex": [
+    "(?i)fabricated|fake reference|non-existent reference",
+    "/home/|/Users/"
+  ],
+  "findings_must_not_match_regex": [
+    "(?i)literature review|research questions?|methodology chapter|harvard|word count"
+  ]
+}
